@@ -5,3 +5,10 @@ export interface GetUserResponse {
     last_name: string;
     birth_date: string;
 }
+
+export interface RegisterUserRequest {
+    firstName: string;
+    lastName: string;
+    email: string;
+    password: string;
+}
