@@ -49,6 +49,9 @@ export const useUser = create<UserState>()(
                 set(initialState);
             },
             async register(user) {
+                if (!user.email || !user.firstName || !user.lastName || !user.password) {
+                    throw new Error("Wszystkie pola muszą być wypełnione!");
+                }
                 const userRes: GetUserResponse = await fetchApi("/user/register", user, {
                     method: "POST",
                 });

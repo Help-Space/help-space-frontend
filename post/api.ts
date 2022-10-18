@@ -23,11 +23,13 @@ const get = async (id: string) => {
 };
 
 const add = async (title: string, content: string) => {
+    if (!title || !content) throw new Error("Tytuł i hasło muszą być wypełnione!");
     const postRes: PostResponse = await fetchApi(`/post`, { title, content }, { method: "POST" });
     return convertApiPost(postRes);
 };
 
 const update = async (id: string, title: string, content: string, isOpen: boolean) => {
+    if (!title || !content) throw new Error("Tytuł i hasło muszą być wypełnione!");
     return await fetchApi(`/post/${id}`, { title, content, isOpen }, { method: "PATCH" });
 };
 
