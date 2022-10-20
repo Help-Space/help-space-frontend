@@ -7,7 +7,7 @@ import {
     ValidationErrorResponse,
 } from "./responses";
 
-const BACKEND_URL = process.env.NODE_ENV === "development" ? "http://localhost:3001" : "";
+export const BACKEND_URL = process.env.NODE_ENV === "development" ? "http://localhost:3001" : "";
 
 export const fetchApi = async <ResponseData = Message>(
     path: string,
