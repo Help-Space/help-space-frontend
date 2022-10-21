@@ -6,20 +6,25 @@ import { io, Socket } from "socket.io-client";
 export default function useChat() {
     const socketRef = useRef<Socket>();
 
-    const [activeConverstionId, setActiveConverationId] = useState<string>("");
-    const [converstions, setConverstions] = useState<Conversation[]>([]);
+    const [activeConversationId, setActiveConversationId] = useState<string>("");
+    const [conversations, setConversations] = useState<Conversation[]>([]);
     const [messages, setMessages] = useState<Message[]>([]);
 
     const setUpListeners = (socket: Socket) => {
-        socket.once("conversations", (converstions: Conversation[]) => {
-            setConverstions(converstions);
+        socket.once("conversations", (conversations: Conversation[]) => {
+            if(conversations.length < 1) return;
+            setConversations(conversations);
+            changeConversation(conversations[0]._id);
         });
+        // socket.on("createConversation", (newConversation: Conversation) => {
+        //     setConversations((conversations) => [newConversation, ...conversations]);
+        // })
         socket.on("message", (message: Message) => {
-            if (message.conversation !== activeConverstionId) return;
+            if (message.conversation !== activeConversationId) return;
             setMessages((msgs) => [...msgs, message]);
         });
         socket.on("messages", (messages: Message[]) => {
-            if (messages.length < 1 || messages[0].conversation !== activeConverstionId) return;
+            if (messages.length < 1 || messages[0].conversation !== activeConversationId) return;
             setMessages((msgs) => [...messages, ...msgs]);
         });
     };
@@ -42,33 +47,34 @@ export default function useChat() {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    const converstionCreate = (postId: string) => {
+    const conversationCreate = (postId: string) => {
         socketRef.current?.emit("conversationCreate", { postId });
     };
 
-    const loadMessages = (converstionId: string, skip: number) => {
-        socketRef.current?.emit("messagesRequest", { converstionId, skip });
+    const loadMessages = (conversationId: string, skip: number) => {
+        socketRef.current?.emit("messagesRequest", { conversationId, skip });
     };
 
-    const changeConverstion = (converstionId: string) => {
-        setActiveConverationId(converstionId);
-        loadMessages(converstionId, 0);
+    const changeConversation = (conversationId: string) => {
+        setActiveConversationId(conversationId);
+        setMessages([]);
+        loadMessages(conversationId, 0);
     };
 
     const loadOldMessages = () => {
-        loadMessages(activeConverstionId, messages.length);
+        loadMessages(activeConversationId, messages.length);
     };
 
     const sendMessage = (message: string) => {
-        socketRef.current?.emit("message", { conversationId: activeConverstionId, message });
+        socketRef.current?.emit("message", { conversationId: activeConversationId, message });
     };
 
     return {
-        activeConverstionId,
-        converstions,
+        activeConversationId,
+        converstions: conversations,
         messages,
-        converstionCreate,
-        changeConverstion,
+        conversationCreate,
+        changeConversation,
         loadOldMessages,
         sendMessage,
     };
