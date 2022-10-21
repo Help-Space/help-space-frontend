@@ -12,7 +12,7 @@ interface UserState {
     logIn: (email: string, password: string) => void;
     logOut: () => void;
     register: (user: RegisterUserRequest) => void;
-    get: () => void;
+    load: () => void;
 }
 
 const initialState = {
@@ -63,8 +63,14 @@ export const useUser = create<UserState>()(
                     lastName: userRes.last_name,
                 });
             },
-            async get() {
-                const user: GetUserResponse = await fetchApi("/user");
+            async load() {
+                let user: GetUserResponse;
+                try {
+                    user = await fetchApi("/user");
+                } catch (_) {
+                    set(initialState);
+                    return;
+                }
                 set({
                     isLoggedIn: true,
                     id: user._id,
