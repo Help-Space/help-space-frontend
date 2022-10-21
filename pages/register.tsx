@@ -1,7 +1,7 @@
 import React from "react";
 import type { NextPage } from "next";
 import Head from "next/head";
-import RegisterForm from "shared/ui/RegisterPage/RegisterForm";
+import RegisterForm from "user/ui/RegisterForm";
 
 const Register: NextPage = () => {
     return (

@@ -51,7 +51,9 @@ const remove = async (id: string) => {
 
 const getPosts = async (path: string): Promise<Posts> => {
     const postsRes: PostsResponse = await fetchApi(path);
+    console.log(postsRes);
     const convertedPosts = postsRes.posts.map((post) => convertApiPost(post));
+    console.log(convertedPosts);
     return { pages: postsRes.pages, posts: convertedPosts };
 };
 

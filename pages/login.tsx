@@ -1,7 +1,7 @@
 import React from "react";
 import type { NextPage } from "next";
 import Head from "next/head";
-import LoginForm from "shared/ui/LoginPage/LoginForm";
+import LoginForm from "user/ui/LoginForm";
 
 const Login: NextPage = () => {
     return (
@@ -9,11 +9,10 @@ const Login: NextPage = () => {
             <Head>
                 <title>Zaloguj się | HelpSpace</title>
                 <link rel="icon" href="/helpspace_logo_icon.svg" />
-            </Head> 
+            </Head>
             <LoginForm />
         </>
     );
-}
- 
-export default Login;
+};
 
+export default Login;
