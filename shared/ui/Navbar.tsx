@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export default function Navbar() {
     return (
-        <NextNavbar shouldHideOnScroll>
+        <NextNavbar> {/* <NextNavbar shouldHideOnScroll> */}
             <NextNavbar.Brand>
                 <Link href="/">
                     <div>
@@ -12,13 +12,11 @@ export default function Navbar() {
                     </div>
                 </Link>
             </NextNavbar.Brand>
-
             <NextNavbar.Content>
                 <Link href="/login">
                     Zaloguj się
                 </Link> 
             </NextNavbar.Content>
-            
         </NextNavbar>
     );
 }

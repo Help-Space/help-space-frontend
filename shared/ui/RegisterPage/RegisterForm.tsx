@@ -30,8 +30,8 @@ export default function RegisterForm() {
                 <title>Zarejestruj się | HelpSpace</title>
                 <link rel="icon" href="/helpspace_logo_icon.svg" />
             </Head>
-            <main className="main-container flex w-[100%] font-quicksand justify-around text-mediumDark">
-                <div className="flex flex-col items-center gap-[40px] py-[80px] w-[100%] md:py-[40px] md:px-[5%] sm:gap-[40px] sm:py-[20px]">
+            <main className="flex w-[100%] font-quicksand justify-around text-mediumDark">
+                <div className="flex flex-col items-center gap-[40px] py-[80px] w-[100%] md:py-[40px]  sm:gap-[40px] sm:py-[20px]">
                     <div className="flex flex-col items-center gap-3">
                         <img src="helpspace_logo_circles.svg" alt="img" className="sm:w-[60px]" />
                         <Text b size="$3xl" className="font-quicksand font-[700]">Załóż konto!</Text>
@@ -94,12 +94,11 @@ export default function RegisterForm() {
                     <div>
                         <Button className="bg-primaryPink text-white hover:bg-secondaryPink hover:text-primaryPink active:bg-[#ffb8b8] active:text-white focus:bg-primaryPink]">Zarejestruj się</Button>
                     </div>
-                    <Link href="/login" className="text-mediumDark">
+                    <Link href="/login" className="text-mediumDark ">
                         <Text className="cursor-pointer">Masz już konto? <Text b className="text-primaryPink">Zaloguj się!</Text></Text>
                     </Link>
                 </div>
-
-                <div className="grid place-items-center h-[100%] w-[100%] relative overflow-hidden lg:hidden bg-primaryPink">
+                <div className="main-container grid place-items-center w-[100%] relative overflow-hidden lg:hidden bg-primaryPink">
                     <img src="helpspace_logo_background.svg" alt="img" />
                     <img src="lines.svg" alt="img" className="absolute -left-[10px] -top-[10px]" />
                 </div>
