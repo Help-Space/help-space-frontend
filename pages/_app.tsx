@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { useUser } from "user/store/useUser";
 import '../styles/style.css';
 import Navbar from "shared/ui/Navbar";
+import Footer from "shared/ui/Footer";
 
 function MyApp({ Component, pageProps }: AppProps) {
     const loadUser = useUser((state) => state.load);
@@ -17,6 +18,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         <NextUIProvider>
             <Navbar />
             <Component {...pageProps} />
+            <Footer />
         </NextUIProvider>
     );
 }

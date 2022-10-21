@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export default function Navbar() {
     return (
-        <NextNavbar> {/* <NextNavbar shouldHideOnScroll> */}
+        <NextNavbar variant="sticky" maxWidth="fluid">
             <NextNavbar.Brand>
                 <Link href="/">
                     <div>
