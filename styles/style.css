@@ -9,8 +9,3 @@
     font-family: 'Quicksand', Arial;
     box-sizing: border-box;
 }
-
-.main-container {
-    height: calc(100vh - 76px);
-}
-

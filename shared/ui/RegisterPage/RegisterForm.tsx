@@ -98,7 +98,7 @@ export default function RegisterForm() {
                         <Text className="cursor-pointer">Masz już konto? <Text b className="text-primaryPink">Zaloguj się!</Text></Text>
                     </Link>
                 </div>
-                <div className="main-container grid place-items-center w-[100%] relative overflow-hidden lg:hidden bg-primaryPink">
+                <div className="grid place-items-center relative w-full overflow-hidden lg:hidden bg-primaryPink">
                     <img src="helpspace_logo_background.svg" alt="img" />
                     <img src="lines.svg" alt="img" className="absolute -left-[10px] -top-[10px]" />
                 </div>
