@@ -24,7 +24,6 @@ module.exports = {
     
     fontFamily: {
       "quicksand": ['Quicksand'],
-      "poppins": ['Poppins'],
     },
     plugins: [],
   }
