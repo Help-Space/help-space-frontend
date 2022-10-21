@@ -11,7 +11,7 @@ export default function useChat() {
     const [messages, setMessages] = useState<Message[]>([]);
 
     const setUpListeners = (socket: Socket) => {
-        socket.once("conversations", (converstions) => {
+        socket.once("conversations", (converstions: Conversation[]) => {
             setConverstions(converstions);
         });
         socket.on("message", (message: Message) => {
@@ -19,7 +19,7 @@ export default function useChat() {
             setMessages((msgs) => [...msgs, message]);
         });
         socket.on("messages", (messages: Message[]) => {
-            if (messages[0].conversation !== activeConverstionId) return;
+            if (messages.length < 1 || messages[0].conversation !== activeConverstionId) return;
             setMessages((msgs) => [...messages, ...msgs]);
         });
     };
