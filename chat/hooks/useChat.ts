@@ -12,13 +12,13 @@ export default function useChat() {
 
     const setUpListeners = (socket: Socket) => {
         socket.once("conversations", (conversations: Conversation[]) => {
-            if(conversations.length < 1) return;
+            if (conversations.length < 1) return;
             setConversations(conversations);
             changeConversation(conversations[0]._id);
         });
-        // socket.on("createConversation", (newConversation: Conversation) => {
-        //     setConversations((conversations) => [newConversation, ...conversations]);
-        // })
+        socket.on("converstionCreated", (newConversation: Conversation) => {
+            setConversations((conversations) => [newConversation, ...conversations]);
+        });
         socket.on("message", (message: Message) => {
             if (message.conversation !== activeConversationId) return;
             setMessages((msgs) => [...msgs, message]);
