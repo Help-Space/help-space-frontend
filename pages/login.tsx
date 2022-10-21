@@ -9,7 +9,6 @@ const Login: NextPage = () => {
             <Head>
                 <title>Zaloguj się | HelpSpace</title>
                 <link rel="icon" href="/helpspace_logo_icon.svg" />
-
             </Head> 
             <LoginForm />
         </>

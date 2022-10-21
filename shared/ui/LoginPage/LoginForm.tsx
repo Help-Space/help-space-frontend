@@ -58,7 +58,7 @@ export default function LoginForm() {
                         <Input.Password clearable underlined type="password" placeholder="Hasło" />
                     </div>
                     <div>
-                        <Button className="bg-primaryPink text-white hover:bg-secondaryPink hover:text-primaryPink active:bg-[#ffb8b8] active:text-white focus:bg-primaryPink]">
+                        <Button className="bg-primaryPink text-white hover:bg-secondaryPink hover:text-primaryPink active:bg-[#ffb8b8] active:text-white focus:bg-primaryPink">
                             Zaloguj się
                         </Button>
                     </div>

@@ -17,7 +17,9 @@ function MyApp({ Component, pageProps }: AppProps) {
     return (
         <NextUIProvider>
             <Navbar />
-            <Component {...pageProps} />
+            <div className="max-w-[1320px] mx-auto">
+                <Component {...pageProps} />
+            </div>
             <Footer />
         </NextUIProvider>
     );

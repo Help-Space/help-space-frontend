@@ -13,7 +13,13 @@ export default function Navbar() {
                 </Link>
             </NextNavbar.Brand>
             <NextNavbar.Content>
-                <Link href="/login">
+                <Link href="/favorite">
+                    <img src="/favorite_icon.svg" alt="favorite" className="w-[28px]" />
+                </Link> 
+                <Link href="/chat">
+                    <img src="/chat_icon.svg" alt="chat" className="w-[28px]" />
+                </Link> 
+                <Link href="/login" >
                     Zaloguj się
                 </Link> 
             </NextNavbar.Content>
