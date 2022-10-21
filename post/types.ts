@@ -13,6 +13,11 @@ export interface Post {
     lastRefresh: Date;
 }
 
+export interface Posts {
+    posts: Post[];
+    pages: number;
+}
+
 export interface AuthorResponse {
     _id: string;
     first_name: string;
@@ -26,4 +31,9 @@ export interface PostResponse {
     title: string;
     content: string;
     last_refresh: Date;
+}
+
+export interface PostsResponse {
+    posts: PostResponse[];
+    pages: number;
 }

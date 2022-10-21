@@ -6,7 +6,7 @@ export interface User {
 
 export interface Message {
     _id: string;
-    author: User;
+    targetUser: User;
     message: string;
     conversation: string;
     created_at: Date;
@@ -19,6 +19,6 @@ export interface ConversationPost {
 
 export interface Conversation {
     _id: string;
-    user: User;
+    targetUser: User;
     post: ConversationPost;
 }

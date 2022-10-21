@@ -1,5 +1,5 @@
 import { fetchApi } from "shared/api/fetchApi";
-import { Post, PostResponse } from "./types";
+import { Post, PostResponse, Posts, PostsResponse } from "./types";
 
 const convertApiPost = (postRes: PostResponse) => {
     const post: Post = {
@@ -49,10 +49,10 @@ const remove = async (id: string) => {
     return await fetchApi(`/post/${id}`, undefined, { method: "DELETE" });
 };
 
-const getPosts = async (path: string) => {
-    const posts: PostResponse[] = await fetchApi(path);
-    const convertedPosts = posts.map((post) => convertApiPost(post));
-    return convertedPosts;
+const getPosts = async (path: string): Promise<Posts> => {
+    const postsRes: PostsResponse = await fetchApi(path);
+    const convertedPosts = postsRes.posts.map((post) => convertApiPost(post));
+    return { pages: postsRes.pages, posts: convertedPosts };
 };
 
 const getByPage = async (page: number) => {
