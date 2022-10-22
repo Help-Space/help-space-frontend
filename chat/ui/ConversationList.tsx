@@ -10,7 +10,6 @@ interface ConversationListProps {
 export default function ConversationList({conversations, changeConversation}: ConversationListProps) {
     return (
         <Container>
-            {conversations.length === 0 && <Text>There are no started conversations!</Text>}
             {conversations.map((conversation) => {
                 return <ConversationCard conversation={conversation} key={conversation._id}
                                          changeConversation={changeConversation}/>;

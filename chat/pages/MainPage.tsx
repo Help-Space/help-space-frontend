@@ -2,9 +2,12 @@ import { Container, Loading } from "@nextui-org/react";
 import ActiveConversation from "chat/ui/ActiveConversation";
 import useChat from "../hooks/useChat";
 import ConversationList from "../ui/ConversationList";
+import FullPageError from "../ui/FullPageError";
+import {useUser} from "../../user/store/useUser";
 
 export default function MainPage() {
     const {changeConversation, activeConversationId, conversationCreate, messages, sendMessage, loadOldMessages, converstions, error, isLoading} = useChat();
+    const {isLoggedIn} = useUser();
 
     if (error) {
         return (
@@ -23,8 +26,13 @@ export default function MainPage() {
 
     return (
         <Container css={{ display: "flex", justifyContent: "center", gap: "$10" }}>
+            {!isLoggedIn && <FullPageError content={"Login to see your conversations!"}/>}
+            {converstions.length === 0 && isLoggedIn && <FullPageError content={"There are no active conversations!"}/>}
             <ConversationList conversations={converstions} changeConversation={changeConversation} />
-            <ActiveConversation activeConversationId={activeConversationId} messages={messages} sendMessage={sendMessage} loadOldMessages={loadOldMessages} />
+
+
+            {converstions.length !== 0 &&
+                <ActiveConversation activeConversationId={activeConversationId} messages={messages} sendMessage={sendMessage} loadOldMessages={loadOldMessages} />}
         </Container>
     );
 }

@@ -16,7 +16,7 @@ export default function ConversationCard({
 
     return (
         <Card borderWeight={undefined}>
-            {/* todo avatar */}}
+            {/* todo avatar */}
             <Card.Header>
                 <Text
                     css={{ fontSize: "$3xl", width: "100%", fontWeight: "$medium" }}
