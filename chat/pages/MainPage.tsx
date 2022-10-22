@@ -25,14 +25,21 @@ export default function MainPage() {
     }
 
     return (
-        <Container css={{ display: "flex", justifyContent: "center", gap: "$10" }}>
-            {!isLoggedIn && <FullPageError content={"Login to see your conversations!"}/>}
+        <Container css={{ display: "flex", justifyContent: "center", gap: "$10", bg: 'blue' }}>
+            <div className="bg-primaryPink rounded-full">
+                <ConversationList conversations={converstions} changeConversation={changeConversation}  />
+            </div>
+            <div className="bg-primaryPink rounded-[30px]">
+                <ActiveConversation activeConversationId={activeConversationId} messages={messages} sendMessage={sendMessage} loadOldMessages={loadOldMessages} />
+            </div>
+
+            {/* {!isLoggedIn && <FullPageError content={"Login to see your conversations!"}/>}
             {converstions.length === 0 && isLoggedIn && <FullPageError content={"There are no active conversations!"}/>}
             <ConversationList conversations={converstions} changeConversation={changeConversation} />
 
 
             {converstions.length !== 0 &&
-                <ActiveConversation activeConversationId={activeConversationId} messages={messages} sendMessage={sendMessage} loadOldMessages={loadOldMessages} />}
+                <ActiveConversation activeConversationId={activeConversationId} messages={messages} sendMessage={sendMessage} loadOldMessages={loadOldMessages} />} */}
         </Container>
     );
 }
