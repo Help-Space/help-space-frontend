@@ -9,6 +9,8 @@ export default function useChat() {
     const [activeConversationId, setActiveConversationId] = useState<string>("");
     const [conversations, setConversations] = useState<Conversation[]>([]);
     const [messages, setMessages] = useState<Message[]>([]);
+    const [isLoading, setIsLoading] = useState<boolean>(true);
+    const [error, setError] = useState<string>("");
 
     const setUpListeners = (socket: Socket) => {
         socket.once("conversations", (conversations: Conversation[]) => {
@@ -30,9 +32,13 @@ export default function useChat() {
     };
 
     const connect = () => {
-        const socket = io(BACKEND_URL);
-        socketRef.current = socket;
-        setUpListeners(socket);
+        try {
+            const socket = io(BACKEND_URL, {withCredentials: true});
+            socketRef.current = socket;
+            setUpListeners(socket);
+        } catch (err: any) {
+            setError(err.message);
+        }
     };
 
     const disconnect = () => {
@@ -43,6 +49,7 @@ export default function useChat() {
 
     useEffect(() => {
         connect();
+        setIsLoading(false);
         return disconnect;
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
@@ -73,6 +80,8 @@ export default function useChat() {
         activeConversationId,
         converstions: conversations,
         messages,
+        isLoading,
+        error,
         conversationCreate,
         changeConversation,
         loadOldMessages,
