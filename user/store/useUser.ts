@@ -24,7 +24,7 @@ const initialState = {
     firstName: "",
     lastName: "",
     email: "",
-    created_at: new Date()
+    created_at: new Date(),
 };
 
 export const useUser = create<UserState>()(
@@ -54,12 +54,29 @@ export const useUser = create<UserState>()(
                 set(initialState);
             },
             async register(user) {
-                if (!user.email || !user.firstName || !user.lastName || !user.password) {
+                if (
+                    !user.email ||
+                    !user.firstName ||
+                    !user.lastName ||
+                    !user.birthDate ||
+                    !user.password
+                ) {
                     throw new Error("Wszystkie pola muszą być wypełnione!");
                 }
-                const userRes: GetUserResponse = await fetchApi("/user/register", user, {
-                    method: "POST",
-                });
+
+                const userRes: GetUserResponse = await fetchApi(
+                    "/user/register",
+                    {
+                        email: user.email,
+                        password: user.password,
+                        first_name: user.firstName,
+                        last_name: user.lastName,
+                        birth_date: new Date(user.birthDate),
+                    },
+                    {
+                        method: "POST",
+                    }
+                );
                 set({
                     isLoggedIn: true,
                     id: userRes._id,
@@ -84,7 +101,7 @@ export const useUser = create<UserState>()(
                     firstName: user.first_name,
                     lastName: user.last_name,
                     email: user.email,
-                    created_at: user.created_at
+                    created_at: user.created_at,
                 });
             },
         }),

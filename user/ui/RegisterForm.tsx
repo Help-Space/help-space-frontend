@@ -43,7 +43,10 @@ export default function RegisterForm() {
         try {
             await register({ firstName, lastName, birthDate, email, password });
         } catch (err) {
-            setError("Coś poszło nie tak!");
+            if (err instanceof Error) {
+                setError(err.message);
+                return;
+            }
         }
     };
 
