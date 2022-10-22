@@ -23,7 +23,7 @@ export default function PostCard({
     author: { id: authorId, firstName, lastName },
     content,
     liked,
-    lastRefresh
+    lastRefresh,
 }: Post) {
     const router = useRouter();
 
@@ -48,9 +48,20 @@ export default function PostCard({
     const contentWords = useMemo(() => content.split(" "), [content]);
 
     return (
-        <Card css={{ border: "none", width: '100%',  paddingBlock: '1rem' }}>
-            <div className="flex items-center w-full" style={{ justifyContent: "space-between", paddingInline: '1.5rem',  paddingBottom: '1rem' }}>
-                <span className="font-[700]" style={{ fontSize: '20px', cursor: 'pointer' }}  onClick={() => router.push(`/post/${postId}`)}>
+        <Card css={{ border: "none", width: "100%", paddingBlock: "1rem" }}>
+            <div
+                className="flex items-center w-full"
+                style={{
+                    justifyContent: "space-between",
+                    paddingInline: "1.5rem",
+                    paddingBottom: "1rem",
+                }}
+            >
+                <span
+                    className="font-[700]"
+                    style={{ fontSize: "20px", cursor: "pointer" }}
+                    onClick={() => router.push(`/post/${postId}`)}
+                >
                     {title}
                 </span>
                 <div>
@@ -62,37 +73,41 @@ export default function PostCard({
                         <Button
                             onClick={isLoggedIn ? like : undefined}
                             auto
-                            icon={<HeartIcon fill={liked ? "#d4402c" : "black"} />}
+                            icon={<HeartIcon fill={isLiked ? "#d4402c" : "black"} />}
                         />
                     </Tooltip>
                 </div>
             </div>
             <div>
-                <div className="flex font-quicksand" style={{ paddingInline: '1.5rem' }}>
+                <div className="flex font-quicksand" style={{ paddingInline: "1.5rem" }}>
                     <UserAvatar firstName={firstName} lastName={lastName} />
                     <Spacer x={0.5} />
                     <div className="flex flex-col">
                         <span>{firstName + " " + lastName}</span>
-                        <span style={{fontSize: '12px' }} >{new Date(lastRefresh).toLocaleDateString()}</span>
+                        <span style={{ fontSize: "12px" }}>
+                            {new Date(lastRefresh).toLocaleDateString()}
+                        </span>
                     </div>
                 </div>
                 <Spacer y={1} />
-                <span style={{ paddingInline: '1.5rem' }}>{showMore ? content : contentWords.slice(0, 100).join(" ")}</span>
+                <span style={{ paddingInline: "1.5rem" }}>
+                    {showMore ? content : contentWords.slice(0, 100).join(" ")}
+                </span>
                 {contentWords.length > 100 && !showMore && (
                     <span
-                    className="text-mediumDark font-bold underline-offset-1"
-                    onClick={() => setShowMore(true)}
+                        className="text-mediumDark font-bold underline-offset-1"
+                        onClick={() => setShowMore(true)}
                     >
                         Pokaż więcej...
                     </span>
                 )}
                 <Spacer y={1} />
                 {authorId !== userId && isLoggedIn && (
-                    <div style={{ paddingInline: '1.5rem' }}>
+                    <div style={{ paddingInline: "1.5rem" }}>
                         <Button
                             css={{ fontSize: "$lg" }}
                             className="bg-primaryPink text-white hover:bg-secondaryPink hover:text-primaryPink active:bg-[#ffb8b8] active:text-white focus:bg-primaryPink focus:text-white"
-                            >
+                        >
                             Napisz
                         </Button>
                     </div>
