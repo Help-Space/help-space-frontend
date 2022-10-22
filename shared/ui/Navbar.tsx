@@ -20,7 +20,7 @@ function DropdownPanel() {
             </Link> 
             <Grid.Container justify="flex-start">
                 <Grid>
-                    <Dropdown placement="bottom-left" css={{ position: 'fixed', top: "70px" }} >
+                    <Dropdown placement="bottom-left">
                         <Dropdown.Trigger>
                             <Avatar
                                 size="lg"
