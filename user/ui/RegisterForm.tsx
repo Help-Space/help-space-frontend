@@ -8,7 +8,7 @@ export default function RegisterForm() {
     const { value, reset, bindings } = useInput("");
   
     const validateEmail = (value: string) => {
-        return value.match(/^[A-Z0-9._%+-]+@[A-Z0-9.-]+.[A-Z]{2,4}$/i);
+        return value.match(/[a-z0-9!#$%&'*+/=?^_{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/);
     };
 
     const helper = React.useMemo(() => {
@@ -30,8 +30,8 @@ export default function RegisterForm() {
                 <title>Zarejestruj się | HelpSpace</title>
                 <link rel="icon" href="/helpspace_logo_icon.svg" />
             </Head>
-            <main className="flex w-[100%] font-quicksand  text-mediumDark">
-            <div className="flex w-1/2 ml-auto lg:w-[100%]  ">
+            <main className="flex w-[100%] font-quicksand text-mediumDark xxxl:min-h-screen xxl:min-h-0">
+                <div className="flex w-1/2 ml-auto lg:w-[100%]">
                     <div className="flex flex-col items-center gap-[60px] py-[80px] ml-auto mr-[250px] xxl:mr-auto md:py-[40px] md:px-[5%]">
                         <div className="flex flex-col items-center gap-3">
                             <img src="helpspace_logo_circles.svg" alt="img" className="sm:w-[60px]" />

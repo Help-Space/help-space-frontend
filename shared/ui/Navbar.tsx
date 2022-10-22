@@ -76,22 +76,22 @@ export default function Navbar() {
     const isLoggedIn = useUser((state) => state.isLoggedIn) 
 
     return (
-        <NextNavbar variant="sticky" maxWidth="fluid"  >
-            <NextNavbar.Brand className="pl-[6rem] md:pl-[3rem] sm:pl-[1rem]">
-                <Link href="/">
-                    <div>
-                        <Link href="/" >
-                            <img src="/helpspace_logo.svg" alt="logo" className="cursor-pointer xs:hidden" />
-                        </Link>
-                        <Link href="/" >
-                            <img src="/helpspace_logo_icon2.svg" alt="logo" className="cursor-pointer hidden xs:block w-[30px]" />
-                        </Link>
-                    </div>
-                </Link>
-            </NextNavbar.Brand>
-            <NextNavbar.Content className="pr-[6rem] md:pr-[3rem] sm:pr-[1rem]">
-                { isLoggedIn ? <DropdownPanel /> : <Link href="/login">Zaloguj się</Link> }
-            </NextNavbar.Content>
+        <NextNavbar variant="sticky" maxWidth="fluid">
+                <NextNavbar.Brand className="pl-[6rem] md:pl-[3rem] sm:pl-[1rem]">
+                    <Link href="/">
+                        <div>
+                            <Link href="/" >
+                                <img src="/helpspace_logo.svg" alt="logo" className="cursor-pointer xs:hidden" />
+                            </Link>
+                            <Link href="/" >
+                                <img src="/helpspace_logo_icon2.svg" alt="logo" className="cursor-pointer hidden xs:block w-[30px]" />
+                            </Link>
+                        </div>
+                    </Link>
+                </NextNavbar.Brand>
+                <NextNavbar.Content className="pr-[6rem] md:pr-[3rem] sm:pr-[1rem]">
+                    { isLoggedIn ? <DropdownPanel /> : <Link href="/login">Zaloguj się</Link> }
+                </NextNavbar.Content>
         </NextNavbar>
     );
 }

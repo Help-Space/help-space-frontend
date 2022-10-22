@@ -15,6 +15,7 @@ import { postApi } from "post/api";
 import { useMemo, useState } from "react";
 import { useUser } from "user/store/useUser";
 import { useRouter } from "next/router";
+import UserAvatar from "user/ui/Avatar";
 
 export default function PostCard({
     id: postId,
@@ -42,11 +43,12 @@ export default function PostCard({
         }
     };
 
-    const [showMore, setShowMore] = useState(true);
+    const [showMore, setShowMore] = useState(false);
     const contentWords = useMemo(() => content.split(" "), [content]);
+    console.log(contentWords.slice(0, 1));
 
     return (
-        <Card borderWeight={undefined}>
+        <Card css={{ border: "none" }}>
             <Card.Header>
                 <Text
                     css={{ fontSize: "$3xl", width: "100%", fontWeight: "$medium" }}
@@ -67,13 +69,18 @@ export default function PostCard({
             </Card.Header>
             <Card.Body>
                 <div className="flex">
-                    <Avatar text={firstName.substring(0, 1) + lastName.substring(0, 1)} squared />
-                    <Text>{firstName + " " + lastName}</Text>
+                    <UserAvatar firstName={firstName} lastName={lastName} />
+                    <span>{firstName + " " + lastName}</span>
                 </div>
                 <Spacer y={1} />
-                <Text>{showMore ? content : contentWords.slice(0, 100)}</Text>
+                <span>{showMore ? content : contentWords.slice(0, 100).join(" ")}</span>
                 {contentWords.length > 100 && !showMore && (
-                    <Button onClick={() => setShowMore(true)}>Pokaż więcej...</Button>
+                    <span
+                        className="text-mediumDark font-bold underline-offset-1"
+                        onClick={() => setShowMore(true)}
+                    >
+                        Pokaż więcej...
+                    </span>
                 )}
                 {authorId !== userId && isLoggedIn && (
                     <Button
