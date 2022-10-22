@@ -6,9 +6,9 @@ import { useUser } from "user/store/useUser";
 function DropdownPanel() {
     const { logOut, firstName, lastName, email } = useUser();
 
-    // const formatUser = (firstName: string, lastName: string) => {
-
-    // }
+    const formatUser = (firstName: string, lastName: string) => (
+        (firstName.substring(0, 1) + lastName.substring(0, 1)).toUpperCase()
+    )
 
     return (
         <>
@@ -24,7 +24,7 @@ function DropdownPanel() {
                         <Dropdown.Trigger>
                             <Avatar
                                 size="lg"
-                                text="AN"
+                                text={formatUser(firstName, lastName)}
                             />
                         </Dropdown.Trigger>
                         <Dropdown.Menu color="secondary" aria-label="Avatar Actions">
