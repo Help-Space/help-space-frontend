@@ -1,7 +1,6 @@
 import { fetchApi } from "shared/api/fetchApi";
 import { GetUserResponse, RegisterUserRequest } from "user/types/api";
 import create from "zustand";
-import { persist } from "zustand/middleware";
 
 interface UserState {
     isLoggedIn: boolean;

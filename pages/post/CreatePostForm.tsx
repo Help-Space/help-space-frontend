@@ -1,7 +1,10 @@
 import { Input, Textarea, Checkbox, Button, Spacer } from "@nextui-org/react";
+import { useRouter } from "next/router";
+import { postApi } from "post/api";
 import { useEffect, useState } from "react";
 
 export default function CreatePostForm() {
+    const router = useRouter();
     const [select, setSelectValue] = useState(false);
     const [title, setTitleValue] = useState("");
     const [description, setDescriptionValue] = useState("");
@@ -18,6 +21,17 @@ export default function CreatePostForm() {
             description.length <= 1000 &&
             select
         );
+
+    const sendForm = async () => {
+        let post;
+        try {
+            post = await postApi.add(title, description);
+        } catch (err) {
+            console.error(err);
+            return;
+        }
+        router.push(`/post/${post.id}`);
+    };
 
     return (
         <div className="flex flex-col gap-20 w-[100%]">
@@ -58,6 +72,7 @@ export default function CreatePostForm() {
                             ? "bg-[#E5E5E5] text-[#ABABAB]"
                             : "bg-primaryPink"
                     } text-white hover:bg-secondaryPink hover:text-primaryPink active:bg-[#ffb8b8] active:text-white  focus:bg-primaryPink focus:text-white`}
+                    onClick={sendForm}
                 >
                     Dodaj ogłoszenie
                 </Button>
