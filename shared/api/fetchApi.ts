@@ -15,8 +15,13 @@ export const fetchApi = async <ResponseData = Message>(
     options?: RequestInit
 ): Promise<ResponseData> => {
     if (body) {
-        options = { ...options, body: JSON.stringify(body) };
+        options = {
+            ...options,
+            body: JSON.stringify(body),
+            headers: { "Content-Type": "application/json" },
+        };
     }
+
     let response;
     try {
         response = await fetch(BACKEND_URL + path, options);
