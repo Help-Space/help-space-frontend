@@ -52,7 +52,7 @@ export default function PostsWithPagination({ getPosts }: PostsWithPaginationPro
             css={{ display: "flex", justifyContent: "center", gap: "$10", marginBlock: "$10" }}
         >
             <PostList posts={posts} />
-            {totalPages === 0 && (
+            {posts.length > 0 && (
                 <Pagination
                     page={page}
                     total={totalPages}
