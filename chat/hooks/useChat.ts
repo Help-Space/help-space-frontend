@@ -17,6 +17,7 @@ export default function useChat() {
             if (conversations.length < 1) return;
             setConversations(conversations);
             changeConversation(conversations[0]._id);
+            setIsLoading(false);
         });
         socket.on("converstionCreated", (newConversation: Conversation) => {
             setConversations((conversations) => [newConversation, ...conversations]);
@@ -49,7 +50,6 @@ export default function useChat() {
 
     useEffect(() => {
         connect();
-        setIsLoading(false);
         return disconnect;
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
