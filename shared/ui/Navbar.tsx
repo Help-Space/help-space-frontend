@@ -15,7 +15,7 @@ function DropdownPanel() {
             <Link href="/favorite">
                 <img src="/favorite_icon.svg" alt="favorite" className="w-[28px] cursor-pointer  sm:hidden" />
             </Link> 
-            <Link href="/chat">
+            <Link href="/conversations">
                 <img src="/chat_icon.svg" alt="chat" className="w-[28px] cursor-pointer sm:hidden" />
             </Link> 
             <Grid.Container justify="flex-start">
@@ -51,8 +51,8 @@ function DropdownPanel() {
                                     Polubione
                                 </Link>
                             </Dropdown.Item>
-                            <Dropdown.Item key="chat">
-                                <Link href="/">
+                            <Dropdown.Item key="conversations">
+                                <Link href="/conversations">
                                     Wiadomości
                                 </Link>
                             </Dropdown.Item>

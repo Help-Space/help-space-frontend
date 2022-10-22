@@ -10,7 +10,7 @@ export interface Post {
     isOpen: boolean;
     title: string;
     content: string;
-    lastRefresh: Date;
+    lastRefresh: string;
     liked: boolean;
 }
 
@@ -31,7 +31,7 @@ export interface PostResponse {
     is_open: boolean;
     title: string;
     content: string;
-    last_refresh: Date;
+    last_refresh: string;
     liked: boolean;
 }
 
