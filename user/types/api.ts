@@ -5,6 +5,7 @@ export interface GetUserResponse {
     last_name: string;
     birth_date: string;
     email: string;
+    created_at: Date;
 }
 
 export interface RegisterUserRequest {

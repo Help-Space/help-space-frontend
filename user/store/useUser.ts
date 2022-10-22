@@ -10,6 +10,7 @@ interface UserState {
     firstName: string;
     lastName: string;
     email: string;
+    created_at: Date;
     logIn: (email: string, password: string) => void;
     logOut: () => void;
     register: (user: RegisterUserRequest) => void;
@@ -23,6 +24,7 @@ const initialState = {
     firstName: "",
     lastName: "",
     email: "",
+    created_at: new Date()
 };
 
 export const useUser = create<UserState>()(
@@ -82,6 +84,7 @@ export const useUser = create<UserState>()(
                     firstName: user.first_name,
                     lastName: user.last_name,
                     email: user.email,
+                    created_at: user.created_at
                 });
             },
         }),
