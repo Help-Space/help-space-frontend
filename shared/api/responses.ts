@@ -5,9 +5,14 @@ export interface ErrorResponse {
     message: Message;
 }
 
+export interface ValidationError {
+    msg: string;
+    param: string;
+}
+
 export interface ValidationErrorResponse {
     isError: true;
-    fields: { msg: string; field: string }[];
+    errors: ValidationError[];
 }
 
 export interface SuccessResponse {

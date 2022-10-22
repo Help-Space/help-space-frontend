@@ -48,7 +48,12 @@ export default function MainPage() {
             css={{ display: "flex", justifyContent: "center", gap: "$10", marginBlock: "$10" }}
         >
             <PostList posts={posts} />
-            <Pagination page={page} total={totalPages} onChange={(newPage) => setPage(newPage)} />
+            <Pagination
+                page={page}
+                total={totalPages}
+                onChange={(newPage) => setPage(newPage)}
+                color="error"
+            />
         </Container>
     );
 }

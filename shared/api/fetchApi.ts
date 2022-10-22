@@ -30,8 +30,8 @@ export const fetchApi = async <ResponseData = Message>(
         throw new Error("Problem z parsowaniem odpowiedzi z serwera");
     }
     if (parsedResponse.isError) {
-        if ((parsedResponse as ValidationErrorResponse).fields) {
-            throw (parsedResponse as ValidationErrorResponse).fields;
+        if ((parsedResponse as ValidationErrorResponse).errors) {
+            throw (parsedResponse as ValidationErrorResponse).errors;
         }
         throw new Error((parsedResponse as ErrorResponse).message);
     }
