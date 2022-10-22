@@ -18,9 +18,12 @@ export const fetchApi = async <ResponseData = Message>(
         options = {
             ...options,
             body: JSON.stringify(body),
-            headers: { "Content-Type": "application/json" },
-            credentials: "include",
         };
+    }
+    options = {
+        ...options,
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
     }
 
     let response;
