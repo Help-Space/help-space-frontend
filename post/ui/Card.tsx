@@ -11,7 +11,7 @@ function ButtonConv() {
     return (
         <>
             <Spacer y={1} />
-            <div style={{ paddingInline: "1.5rem" }} >
+            <div style={{ paddingInline: "1.5rem", paddingBottom: '1rem' }} >
                 <Button
                     css={{ fontSize: "$lg" }}
                     className="md:w-full bg-primaryPink text-white hover:bg-secondaryPink hover:text-primaryPink active:bg-[#ffb8b8] active:text-white focus:bg-primaryPink focus:text-white"

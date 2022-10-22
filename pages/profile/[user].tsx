@@ -1,13 +1,11 @@
 import type { NextPage } from "next";
-// import Link from 'next/link'
 import Head from "next/head";
 import { useUser } from "user/store/useUser";
-// import { Button } from "@nextui-org/react";
 import { Button, Link } from "@nextui-org/react";
 import { default as NextLink } from "next/link";
 
 function UserBaner() {
-    const { logOut, firstName, lastName  } = useUser(); // date account create, localization
+    const { logOut, firstName, lastName  } = useUser(); // date account create
 
     const formatUser = (firstName: string, lastName: string) => (
         (firstName.substring(0, 1) + lastName.substring(0, 1)).toUpperCase()
