@@ -13,6 +13,7 @@ const convertApiPost = (postRes: PostResponse) => {
         title: postRes.title,
         content: postRes.content,
         lastRefresh: postRes.last_refresh,
+        liked: postRes.liked,
     };
     return post;
 };

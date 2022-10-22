@@ -1,22 +1,26 @@
 import { Container, Loading, Pagination, Text } from "@nextui-org/react";
 import { postApi } from "post/api";
-import { Post } from "post/types";
+import { Post, Posts } from "post/types";
 import PostList from "post/ui/List";
 import { useEffect, useState } from "react";
 
-export default function MainPage() {
+interface PostsWithPaginationProps {
+    getPosts: (page: number) => Promise<Posts>;
+}
+
+export default function PostsWithPagination({ getPosts }: PostsWithPaginationProps) {
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState<string>();
     const [posts, setPosts] = useState<Post[]>([]);
     const [page, setPage] = useState(1);
-    const [totalPages, setTotalPages] = useState(1);
+    const [totalPages, setTotalPages] = useState(0);
 
     useEffect(() => {
         setIsLoading(true);
         (async () => {
             let newPosts;
             try {
-                newPosts = await postApi.getByPage(page);
+                newPosts = await getPosts(page);
             } catch (err) {
                 setError((err as Error).message);
                 return;
@@ -48,12 +52,14 @@ export default function MainPage() {
             css={{ display: "flex", justifyContent: "center", gap: "$10", marginBlock: "$10" }}
         >
             <PostList posts={posts} />
-            <Pagination
-                page={page}
-                total={totalPages}
-                onChange={(newPage) => setPage(newPage)}
-                color="error"
-            />
+            {totalPages === 0 && (
+                <Pagination
+                    page={page}
+                    total={totalPages}
+                    onChange={(newPage) => setPage(newPage)}
+                    color="error"
+                />
+            )}
         </Container>
     );
 }

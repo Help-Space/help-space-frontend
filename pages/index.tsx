@@ -1,6 +1,6 @@
 import type { NextPage } from "next";
 import Head from "next/head";
-import MainPage from "post/pages/MainPage";
+import MainPage from "post/pages/Main";
 
 const Home: NextPage = () => {
     return (
