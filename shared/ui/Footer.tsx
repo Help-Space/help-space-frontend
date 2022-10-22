@@ -45,7 +45,7 @@ export default function Footer() {
                         </div>
                         <ul className="text-white pt-5 font-[300]">
                             <li><Link href="/">Twój profil</Link></li>
-                            <li><Link href="/">Wiadomości</Link></li>
+                            <li><Link href="/conversations">Wiadomości</Link></li>
                         </ul>
                     </div>
                 </div>

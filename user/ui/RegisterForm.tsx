@@ -139,7 +139,7 @@ export default function RegisterForm() {
                         {error && <p>{error}</p>}
                         <div>
                             <Button
-                                className="bg-primaryPink text-white hover:bg-secondaryPink hover:text-primaryPink active:bg-[#ffb8b8] active:text-white focus:bg-primaryPink]"
+                                className="bg-primaryPink text-white hover:bg-secondaryPink hover:text-primaryPink active:bg-[#ffb8b8] active:text-white focus:bg-primaryPink focus:text-white"
                                 onClick={sendForm}
                             >
                                 Zarejestruj się

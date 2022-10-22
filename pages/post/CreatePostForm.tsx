@@ -57,7 +57,7 @@ export default function CreatePostForm() {
                         handleBtn(select, title, description)
                             ? "bg-[#E5E5E5] text-[#ABABAB]"
                             : "bg-primaryPink"
-                    } text-white hover:bg-secondaryPink hover:text-primaryPink active:bg-[#ffb8b8] active:text-white focus:bg-primaryPink`}
+                    } text-white hover:bg-secondaryPink hover:text-primaryPink active:bg-[#ffb8b8] active:text-white  focus:bg-primaryPink focus:text-white`}
                 >
                     Dodaj ogłoszenie
                 </Button>

@@ -25,7 +25,7 @@ export default function LoginForm() {
             };
         const isValid = validateEmail(value);
         return {
-            text: isValid ? "Poprawny email" : "Błędny adres email",
+            text: isValid ? "" : "Błędny adres email",
             color: isValid ? "success" : "error",
         };
     }, [value]);
@@ -87,7 +87,7 @@ export default function LoginForm() {
                         </div>
                         <div>
                             <Button
-                                className="bg-primaryPink text-white hover:bg-secondaryPink hover:text-primaryPink active:bg-[#ffb8b8] active:text-white focus:bg-primaryPink"
+                                className="bg-primaryPink text-white hover:bg-secondaryPink hover:text-primaryPink active:bg-[#ffb8b8] active:text-white  focus:bg-primaryPink focus:text-white"
                                 onClick={sendForm}
                             >
                                 Zaloguj się
