@@ -11,6 +11,7 @@ export interface Post {
     title: string;
     content: string;
     lastRefresh: Date;
+    liked: boolean;
 }
 
 export interface Posts {
@@ -31,6 +32,7 @@ export interface PostResponse {
     title: string;
     content: string;
     last_refresh: Date;
+    liked: boolean;
 }
 
 export interface PostsResponse {

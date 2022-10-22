@@ -1,4 +1,4 @@
-import { Loading, Pagination, Text } from "@nextui-org/react";
+import { Container, Loading, Pagination, Text } from "@nextui-org/react";
 import { postApi } from "post/api";
 import { Post } from "post/types";
 import PostList from "post/ui/List";
@@ -44,9 +44,9 @@ export default function MainPage() {
     }
 
     return (
-        <>
+        <Container css={{ display: "flex", justifyContent: "center", gap: "$10" }}>
             <PostList posts={posts} />
             <Pagination page={page} total={totalPages} onChange={(newPage) => setPage(newPage)} />
-        </>
+        </Container>
     );
 }
