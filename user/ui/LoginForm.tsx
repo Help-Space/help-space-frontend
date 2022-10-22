@@ -7,14 +7,16 @@ export default function LoginForm() {
     const { value, reset, bindings } = useInput("");
 
     const validateEmail = (value: string) => {
-        return value.match(/[a-z0-9!#$%&'*+/=?^_{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/);
+        return value.match(
+            /[a-z0-9!#$%&'*+/=?^_{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/
+        );
     };
 
-    const helper = React.useMemo(() => {
+    const helper = React.useMemo((): { text: string; color: "default" | "success" | "error" } => {
         if (!value)
             return {
                 text: "",
-                color: "",
+                color: "default",
             };
         const isValid = validateEmail(value);
         return {
@@ -33,7 +35,11 @@ export default function LoginForm() {
                 <div className="flex w-1/2 ml-auto lg:w-[100%]">
                     <div className="flex flex-col items-center gap-[60px] ml-auto mr-[250px] xxl:mr-auto py-[80px] md:py-[40px] md:px-[5%]">
                         <div className="flex flex-col items-center gap-3">
-                            <img src="helpspace_logo_circles.svg" alt="img" className="sm:w-[60px]" />
+                            <img
+                                src="helpspace_logo_circles.svg"
+                                alt="img"
+                                className="sm:w-[60px]"
+                            />
                             <Text b size="$3xl" className="font-quicksand font-[700]">
                                 Zaloguj się!
                             </Text>
@@ -56,7 +62,12 @@ export default function LoginForm() {
                                 helperColor={helper.color}
                                 helperText={helper.text}
                             />
-                            <Input.Password clearable underlined type="password" placeholder="Hasło" />
+                            <Input.Password
+                                clearable
+                                underlined
+                                type="password"
+                                placeholder="Hasło"
+                            />
                         </div>
                         <div>
                             <Button className="bg-primaryPink text-white hover:bg-secondaryPink hover:text-primaryPink active:bg-[#ffb8b8] active:text-white focus:bg-primaryPink">
@@ -83,5 +94,5 @@ export default function LoginForm() {
                 </div>
             </main>
         </>
-    )
+    );
 }

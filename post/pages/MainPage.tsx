@@ -44,7 +44,9 @@ export default function MainPage() {
     }
 
     return (
-        <Container css={{ display: "flex", justifyContent: "center", gap: "$10" }}>
+        <Container
+            css={{ display: "flex", justifyContent: "center", gap: "$10", marginBlock: "$10" }}
+        >
             <PostList posts={posts} />
             <Pagination page={page} total={totalPages} onChange={(newPage) => setPage(newPage)} />
         </Container>
