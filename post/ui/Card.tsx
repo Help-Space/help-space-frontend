@@ -45,31 +45,31 @@ export default function PostCard({
 
     const [showMore, setShowMore] = useState(false);
     const contentWords = useMemo(() => content.split(" "), [content]);
-    console.log(contentWords.slice(0, 1));
 
     return (
         <Card css={{ border: "none" }}>
-            <Card.Header>
-                <Text
-                    css={{ fontSize: "$3xl", width: "100%", fontWeight: "$medium" }}
-                    onClick={() => router.push(`/post/${postId}`)}
-                >
+            <div className="flex w-full" style={{ justifyContent: "space-between" }}>
+                <span className="font-[700]" onClick={() => router.push(`/post/${postId}`)}>
                     {title}
-                </Text>
-                <Tooltip
-                    content={"Musisz być zalogowany, by móc dodawać ogłoszenia do ulubionych"}
-                    css={{ display: isLoggedIn ? "none" : "block" }}
-                >
-                    <Button
-                        onClick={isLoggedIn ? like : undefined}
-                        auto
-                        icon={<HeartIcon fill={liked ? "#d4402c" : "black"} />}
-                    />
-                </Tooltip>
-            </Card.Header>
+                </span>
+                <div>
+                    <Tooltip
+                        content={"Musisz być zalogowany, by móc dodawać ogłoszenia do ulubionych"}
+                        css={{ display: isLoggedIn ? "none" : "block" }}
+                        className="self-end"
+                    >
+                        <Button
+                            onClick={isLoggedIn ? like : undefined}
+                            auto
+                            icon={<HeartIcon fill={liked ? "#d4402c" : "black"} />}
+                        />
+                    </Tooltip>
+                </div>
+            </div>
             <Card.Body>
                 <div className="flex">
                     <UserAvatar firstName={firstName} lastName={lastName} />
+                    <Spacer x={0.5} />
                     <span>{firstName + " " + lastName}</span>
                 </div>
                 <Spacer y={1} />

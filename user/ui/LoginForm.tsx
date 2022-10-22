@@ -1,10 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import Head from "next/head";
 import { Button, Input, useInput, Text } from "@nextui-org/react";
 import Link from "next/link";
+import { useUser } from "user/store/useUser";
+import { ValidationError } from "shared/api/responses";
 
 export default function LoginForm() {
+    const logIn = useUser((state) => state.logIn);
     const { value, reset, bindings } = useInput("");
+    const [password, setPassword] = useState("");
+    const [error, setError] = useState<string | undefined>(undefined);
 
     const validateEmail = (value: string) => {
         return value.match(
@@ -24,6 +29,14 @@ export default function LoginForm() {
             color: isValid ? "success" : "error",
         };
     }, [value]);
+
+    const sendForm = async () => {
+        try {
+            await logIn(value, password);
+        } catch (err) {
+            setError("Dane są niepoprawne");
+        }
+    };
 
     return (
         <>
@@ -63,14 +76,20 @@ export default function LoginForm() {
                                 helperText={helper.text}
                             />
                             <Input.Password
+                                value={password}
                                 clearable
                                 underlined
                                 type="password"
                                 placeholder="Hasło"
+                                onChange={(e) => setPassword(e.target.value)}
                             />
+                            {error && <p className="whitespace-pre-line text-center">{error}</p>}
                         </div>
                         <div>
-                            <Button className="bg-primaryPink text-white hover:bg-secondaryPink hover:text-primaryPink active:bg-[#ffb8b8] active:text-white focus:bg-primaryPink">
+                            <Button
+                                className="bg-primaryPink text-white hover:bg-secondaryPink hover:text-primaryPink active:bg-[#ffb8b8] active:text-white focus:bg-primaryPink"
+                                onClick={sendForm}
+                            >
                                 Zaloguj się
                             </Button>
                         </div>
