@@ -14,10 +14,10 @@ export default function useChat() {
 
     const setUpListeners = (socket: Socket) => {
         socket.once("conversations", (conversations: Conversation[]) => {
+            setIsLoading(false);
             if (conversations.length < 1) return;
             setConversations(conversations);
             changeConversation(conversations[0]._id);
-            setIsLoading(false);
         });
         socket.on("converstionCreated", (newConversation: Conversation) => {
             setConversations((conversations) => [newConversation, ...conversations]);
