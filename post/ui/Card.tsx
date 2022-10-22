@@ -17,6 +17,22 @@ import { useUser } from "user/store/useUser";
 import { useRouter } from "next/router";
 import UserAvatar from "user/ui/Avatar";
 
+function ButtonConv() {
+    return (
+        <>
+            <Spacer y={1} />
+            <div style={{ paddingInline: "1.5rem" }} >
+                <Button
+                    css={{ fontSize: "$lg" }}
+                    className="md:w-full bg-primaryPink text-white hover:bg-secondaryPink hover:text-primaryPink active:bg-[#ffb8b8] active:text-white focus:bg-primaryPink focus:text-white"
+                >
+                    Napisz
+                </Button>
+            </div>
+        </>
+    )
+}
+
 export default function PostCard({
     id: postId,
     title,
@@ -58,8 +74,7 @@ export default function PostCard({
                 }}
             >
                 <span
-                    className="font-[700]"
-                    style={{ fontSize: "20px", cursor: "pointer" }}
+                    className="font-[700] text-[20px] cursor-pointer md:text-[18px]"
                     onClick={() => router.push(`/post/${postId}`)}
                 >
                     {title}
@@ -90,27 +105,21 @@ export default function PostCard({
                     </div>
                 </div>
                 <Spacer y={1} />
-                <span style={{ paddingInline: "1.5rem" }}>
+                <span style={{ display: 'flex', flexWrap: 'wrap', paddingInline: '1.5rem', wordBreak: 'break-word' }} >
                     {showMore ? content : contentWords.slice(0, 100).join(" ")}
                 </span>
+                <Spacer y={1} />
                 {contentWords.length > 100 && !showMore && (
                     <span
                         className="text-mediumDark font-bold underline-offset-1"
+                        style={{ paddingInline: '1.5rem'}}
                         onClick={() => setShowMore(true)}
                     >
                         Pokaż więcej...
                     </span>
                 )}
-                <Spacer y={1} />
                 {authorId !== userId && isLoggedIn && (
-                    <div style={{ paddingInline: "1.5rem" }}>
-                        <Button
-                            css={{ fontSize: "$lg" }}
-                            className="bg-primaryPink text-white hover:bg-secondaryPink hover:text-primaryPink active:bg-[#ffb8b8] active:text-white focus:bg-primaryPink focus:text-white"
-                        >
-                            Napisz
-                        </Button>
-                    </div>
+                    <ButtonConv />
                 )}
             </div>
         </Card>
