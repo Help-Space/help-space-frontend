@@ -1,15 +1,5 @@
 import { Post } from "post/types";
-import {
-    Avatar,
-    Button,
-    Card,
-    Container,
-    Grid,
-    Image,
-    Spacer,
-    Text,
-    Tooltip,
-} from "@nextui-org/react";
+import { Button, Card, Spacer, Tooltip } from "@nextui-org/react";
 import HeartIcon from "./HeartIcon";
 import { postApi } from "post/api";
 import { useMemo, useState } from "react";
