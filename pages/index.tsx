@@ -9,7 +9,9 @@ const Home: NextPage = () => {
                 <title>HelpSpace | Strona Główna</title>
                 <link rel="icon" href="/helpspace_logo_icon.svg" />
             </Head>
-            <MainPage />
+            <main className="max-w-[1320px] mx-auto">
+                <MainPage />
+            </main>
         </>
     );
 };

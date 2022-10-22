@@ -1,3 +1,5 @@
+import Link from "next/link"
+
 export default function Footer() {
     return (
         <div className="flex gap-[120px] bg-primaryPink px-[5rem] py-[3rem] pb-32 font-quicksand text-white xl:flex-col xl:gap-[50px] md:px-[2rem] md:pb-18">
@@ -10,7 +12,6 @@ export default function Footer() {
                     <img src="/github_icon.svg" alt="github" className="cursor-pointer" />
                     <img src="/twitter_icon.svg" alt="github" className="cursor-pointer" />
                 </div>
-
             </div>
             <div className="flex flex-wrap gap-[150px] pt-[25px] md:gap-[50px]  sm:text-[15px]">
                 <div>
@@ -19,10 +20,10 @@ export default function Footer() {
                         <div className="h-[2px] w-[30px] bg-white absolute -bottom-[5px] left-0 rounded-[20px]"></div>
                     </div>
                     <ul className=" text-white pt-5 font-[300]">
-                        <li>Strona główna</li>
-                        <li>Ogłoszenia</li>
-                        <li>Informacje</li>
-                        <li>Wydarzenia</li>
+                        <li><Link href="/">Strona główna</Link></li>
+                        <li><Link href="/">Ogłoszenia</Link></li>
+                        <li><Link href="/">Informacje</Link></li>
+                        <li><Link href="/">Wydarzenia</Link></li>
                     </ul>
                 </div>
                 <div>
@@ -31,9 +32,9 @@ export default function Footer() {
                         <div className="h-[2px] w-[30px] bg-white absolute -bottom-[5px] left-0 rounded-[20px]"></div>
                     </div>
                     <ul className="text-white pt-5 font-[300]">
-                        <li>Ogłoszenia</li>
-                        <li>Polubienia</li>
-                        <li>Dodaj ogłoszenie</li>
+                        <li><Link href="/">Ogłoszenia</Link></li>
+                        <li><Link href="/">Polubienia</Link></li>
+                        <li><Link href="/post/create">Dodaj ogłoszenie</Link></li>
                     </ul>
                 </div>
                 <div>
@@ -42,11 +43,10 @@ export default function Footer() {
                         <div className="h-[2px] w-[30px] bg-white absolute -bottom-[5px] left-0 rounded-[20px]"></div>
                     </div>
                     <ul className="text-white pt-5 font-[300]">
-                        <li>Twój profil</li>
-                        <li>Wiadomości</li>
+                        <li><Link href="/">Twój profil</Link></li>
+                        <li><Link href="/">Wiadomości</Link></li>
                     </ul>
                 </div>
-                
             </div>
         </div>
     )

@@ -29,54 +29,59 @@ export default function LoginForm() {
                 <title>Zaloguj się | HelpSpace</title>
                 <link rel="icon" href="/helpspace_logo_icon.svg" />
             </Head>
-            <main className="flex w-[100%] font-quicksand justify-around text-mediumDark">
-                <div className="flex flex-col items-center gap-[60px] py-[80px] w-[100%] md:py-[40px] md:px-[5%] ">
-                    <div className="flex flex-col items-center gap-3">
-                        <img src="helpspace_logo_circles.svg" alt="img" className="sm:w-[60px]" />
-                        <Text b size="$3xl" className="font-quicksand font-[700]">
-                            Zaloguj się!
-                        </Text>
-                        <Text className="font-quicksand text-center text-lightDark tracking-[1px] leading-[22px]">
-                            Lorem Ipsum is simply dummy text
-                            <br /> of the printing and printer.
-                        </Text>
-                    </div>
-                    <div className="flex flex-col gap-5">
-                        <Input
-                            clearable
-                            {...bindings}
-                            type="email"
-                            underlined
-                            labelPlaceholder="Email"
-                            shadow={false}
-                            onClearClick={reset}
-                            status={helper.color}
-                            color={helper.color}
-                            helperColor={helper.color}
-                            helperText={helper.text}
-                        />
-                        <Input.Password clearable underlined type="password" placeholder="Hasło" />
-                    </div>
-                    <div>
-                        <Button className="bg-primaryPink text-white hover:bg-secondaryPink hover:text-primaryPink active:bg-[#ffb8b8] active:text-white focus:bg-primaryPink">
-                            Zaloguj się
-                        </Button>
-                    </div>
-                    <Link href="/register" className="text-mediumDark">
-                        <Text className="cursor-pointer">
-                            Nie masz jeszcze konta?{" "}
-                            <Text b className="text-primaryPink">
-                                Zarejestruj się!
+            <main className="flex w-[100%] font-quicksand  text-mediumDark">
+                <div className="flex w-1/2 ml-auto lg:w-[100%]  ">
+                    <div className="flex flex-col items-center gap-[60px] ml-auto mr-[250px] xxl:mr-auto py-[80px] md:py-[40px] md:px-[5%]">
+                        <div className="flex flex-col items-center gap-3">
+                            <img src="helpspace_logo_circles.svg" alt="img" className="sm:w-[60px]" />
+                            <Text b size="$3xl" className="font-quicksand font-[700]">
+                                Zaloguj się!
                             </Text>
-                        </Text>
-                    </Link>
+                            <Text className="font-quicksand text-center text-lightDark tracking-[1px] leading-[22px]">
+                                Lorem Ipsum is simply dummy text
+                                <br /> of the printing and printer.
+                            </Text>
+                        </div>
+                        <div className="flex flex-col gap-5">
+                            <Input
+                                clearable
+                                {...bindings}
+                                type="email"
+                                underlined
+                                labelPlaceholder="Email"
+                                shadow={false}
+                                onClearClick={reset}
+                                status={helper.color}
+                                color={helper.color}
+                                helperColor={helper.color}
+                                helperText={helper.text}
+                            />
+                            <Input.Password clearable underlined type="password" placeholder="Hasło" />
+                        </div>
+                        <div>
+                            <Button className="bg-primaryPink text-white hover:bg-secondaryPink hover:text-primaryPink active:bg-[#ffb8b8] active:text-white focus:bg-primaryPink">
+                                Zaloguj się
+                            </Button>
+                        </div>
+                        <Link href="/register" className="text-mediumDark">
+                            <Text className="cursor-pointer">
+                                Nie masz jeszcze konta?{" "}
+                                <Text b className="text-primaryPink">
+                                    Zarejestruj się!
+                                </Text>
+                            </Text>
+                        </Link>
+                    </div>
                 </div>
-
-                <div className="grid place-items-center w-[100%] relative overflow-hidden lg:hidden bg-primaryPink">
-                    <img src="helpspace_logo_background.svg" alt="img" />
+                <div className="flex w-1/2 ml-auto bg-primaryPink relative overflow-hidden lg:hidden">
                     <img src="lines.svg" alt="img" className="absolute -left-[10px] -top-[10px]" />
+                    <div className="flex mr-auto ml-[250px] xxl:ml-auto">
+                        <div className="grid place-items-center">
+                            <img src="helpspace_logo_background.svg" alt="img" />
+                        </div>
+                    </div>
                 </div>
             </main>
         </>
-    );
+    )
 }

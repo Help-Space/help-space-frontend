@@ -9,6 +9,7 @@ interface UserState {
     username: string;
     firstName: string;
     lastName: string;
+    email: string;
     logIn: (email: string, password: string) => void;
     logOut: () => void;
     register: (user: RegisterUserRequest) => void;
@@ -21,6 +22,7 @@ const initialState = {
     username: "",
     firstName: "",
     lastName: "",
+    email: "",
 };
 
 export const useUser = create<UserState>()(
@@ -42,6 +44,7 @@ export const useUser = create<UserState>()(
                     username: user.username,
                     firstName: user.first_name,
                     lastName: user.last_name,
+                    email: user.email,
                 });
             },
             async logOut() {
@@ -61,6 +64,7 @@ export const useUser = create<UserState>()(
                     username: userRes.username,
                     firstName: userRes.first_name,
                     lastName: userRes.last_name,
+                    email: user.email,
                 });
             },
             async load() {
@@ -77,6 +81,7 @@ export const useUser = create<UserState>()(
                     username: user.username,
                     firstName: user.first_name,
                     lastName: user.last_name,
+                    email: user.email,
                 });
             },
         }),

@@ -18,9 +18,11 @@ const CreatePost: NextPage = () => {
                 <title>HelpSpace | Dodaj ogłoszenia</title>
                 <link rel="icon" href="/helpspace_logo_icon.svg" />
             </Head>
-            <main className="flex flex-col gap-[7rem] items-center px-[25%] pt-[4rem] pb-[8rem]  xl:px-[15%] md:px-[10%] sm:pt-[2rem] sm:gap-[5rem] sm:pb-[5rem] sm:px-[5%]">
-                <DescriptionCreatePost />
-                <CreatePostForm />
+            <main className="max-w-[1320px] mx-auto">
+                <div className=" flex flex-col gap-[7rem] items-center px-[25%] pt-[4rem] pb-[8rem] xl:px-[15%] md:px-[10%] sm:pt-[2rem] sm:gap-[5rem] sm:pb-[5rem] sm:px-[5%]">
+                    <DescriptionCreatePost />
+                    <CreatePostForm />
+                </div>
             </main>
         </>
     );

@@ -3,6 +3,7 @@ module.exports = {
   content: [
     "./pages/**/*.{js,ts,jsx,tsx}",
     "./shared/**/*.{js,ts,jsx,tsx}",
+    "./user/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
     screens: {
