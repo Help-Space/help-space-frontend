@@ -3,7 +3,6 @@ import Head from "next/head";
 import { Button, Input, useInput, Text } from "@nextui-org/react";
 import Link from "next/link";
 import { useUser } from "user/store/useUser";
-import { ValidationError } from "shared/api/responses";
 
 export default function LoginForm() {
     const logIn = useUser((state) => state.logIn);
