@@ -8,6 +8,7 @@ import { fetchApi } from "shared/api/fetchApi";
 import { GetUserResponse } from "user/types/api";
 import PostsWithPagination from "post/layout/WithPagination";
 import { postApi } from "post/api";
+import FullPageLoading from "../../shared/ui/FullPageLoading";
 
 function UserBaner() {
     const router = useRouter();
@@ -33,7 +34,7 @@ function UserBaner() {
     }, [router.isReady]);
 
     if (isLoading) {
-        return <Loading />;
+        return <FullPageLoading />;
     }
 
     return (
