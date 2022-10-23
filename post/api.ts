@@ -60,8 +60,8 @@ const getByPage = async (page: number) => {
     return await getPosts(`/posts?page=${page}`);
 };
 
-const getByAuthor = async (authorId: string, page: number) => {
-    return await getPosts(`/posts?page=${page}&authorId=${authorId}`);
+const getByAuthor = async (authorId: string, page: number, filterBy = "opened") => {
+    return await getPosts(`/posts?page=${page}&authorId=${authorId}&filterBy=${filterBy}`);
 };
 
 const getLiked = async (page: number) => {

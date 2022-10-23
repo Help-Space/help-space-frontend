@@ -1,8 +1,6 @@
 import type { NextPage } from "next";
 import Head from "next/head";
-import { Button, Link, Loading, Navbar } from "@nextui-org/react";
-import { default as NextLink } from "next/link";
-import { Router, useRouter } from "next/router";
+import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { fetchApi } from "shared/api/fetchApi";
 import { GetUserResponse } from "user/types/api";
@@ -84,8 +82,8 @@ const Profile: NextPage = () => {
                 <div className="pt-[5rem] md:pt-[2rem]">
                     {router.isReady && (
                         <PostsWithPagination
-                            getPosts={(page: number) =>
-                                postApi.getByAuthor(router.query.user as string, page)
+                            getPosts={(page: number, filterBy: string) =>
+                                postApi.getByAuthor(router.query.user as string, page, filterBy)
                             }
                         />
                     )}
