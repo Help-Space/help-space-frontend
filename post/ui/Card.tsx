@@ -1,5 +1,5 @@
 import { Post } from "post/types";
-import { Button, Card, Spacer, Tooltip, Dropdown } from "@nextui-org/react";
+import { Button, Card, Spacer, Tooltip, Dropdown, Popover, Row, Text, Modal, Input, Checkbox  } from "@nextui-org/react";
 import HeartIcon from "./HeartIcon";
 import { postApi } from "post/api";
 import { useMemo, useState } from "react";
@@ -7,8 +7,71 @@ import { useUser } from "user/store/useUser";
 import { useRouter } from "next/router";
 import UserAvatar from "user/ui/Avatar";
 
+function EditPost() {
+    const [visible, setVisible] = useState(false);
+    const handler = () => setVisible(true);
+    const closeHandler = () => {
+      setVisible(false);
+      console.log("closed");
+    };
+    return (
+      <div>
+        <span onClick={handler}>
+          Open modal
+        </span>
+        <Modal
+          closeButton
+          blur
+          aria-labelledby="modal-title"
+          open={visible}
+          onClose={closeHandler}
+        >
+          <Modal.Header>
+            <Text id="modal-title" size={18}>
+              Welcome to
+              <Text b size={18}>
+                NextUI
+              </Text>
+            </Text>
+          </Modal.Header>
+          <Modal.Body>
+            <Input
+              clearable
+              bordered
+              fullWidth
+              color="primary"
+              size="lg"
+              placeholder="Email"
+            />
+            <Input
+              clearable
+              bordered
+              fullWidth
+              color="primary"
+              size="lg"
+              placeholder="Password"
+            />
+            <Row justify="space-between">
+              <Checkbox>
+                <Text size={14}>Remember me</Text>
+              </Checkbox>
+              <Text size={14}>Forgot password?</Text>
+            </Row>
+          </Modal.Body>
+          <Modal.Footer>
+            <Button auto flat color="error" onClick={closeHandler}>
+              Close
+            </Button>
+            <Button auto onClick={closeHandler} className="bg-primaryPink text-white hover:bg-secondaryPink hover:text-primaryPink active:bg-[#ffb8b8] active:text-white  focus:bg-primaryPink focus:text-white">
+              Sign in
+            </Button>
+          </Modal.Footer>
+        </Modal>
+      </div>
+    );
+  }
+
 function DropdownMenu({ id } : { id: string }) {
-    
     return (
         <Dropdown>
             <Dropdown.Button color="error" flat icon={<img src="/dropdown_icon.svg" alt="icon" />} ></Dropdown.Button>
@@ -24,8 +87,9 @@ function DropdownMenu({ id } : { id: string }) {
                     {/* </div> */}
                 </Dropdown.Item>
                 <Dropdown.Item key="edit">
+                    <EditPost />
                     {/* <div> */}
-                        Edytuj ogłoszenie
+                        {/* Edytuj ogłoszenie */}
                     {/* </div> */}
                 </Dropdown.Item>
                 <Dropdown.Item key="delete" withDivider color="error">
