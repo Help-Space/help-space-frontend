@@ -85,6 +85,7 @@ const Profile: NextPage = () => {
                             getPosts={(page: number, filterBy: string) =>
                                 postApi.getByAuthor(router.query.user as string, page, filterBy)
                             }
+                            user={router.query.user as string}
                         />
                     )}
                 </div>

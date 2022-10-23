@@ -5,13 +5,13 @@ import PostList from "post/ui/List";
 import { useEffect, useState } from "react";
 import FullPageLoading from "../../shared/ui/FullPageLoading";
 import { useUser } from "user/store/useUser";
-import { useRouter } from "next/router";
 
 interface PostsWithPaginationProps {
     getPosts: (page: number, filterBy: string) => Promise<Posts>;
+    user: string;
 }
 
-export default function PostsWithPagination({ getPosts }: PostsWithPaginationProps) {
+export default function PostsWithPagination({ getPosts, user }: PostsWithPaginationProps) {
     const { id: userId, isLoggedIn } = useUser();
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState<string>();
@@ -54,44 +54,45 @@ export default function PostsWithPagination({ getPosts }: PostsWithPaginationPro
     if (isLoading) {
         return <FullPageLoading />;
     }
+    const sameUser = isLoggedIn && (userId === user);
 
     return (
         <div className="max-w-[1320px] mx-auto xxl:min-h-auto overflow-auto">
             <div className="flex py-10 md:flex-col gap-10">
-                <div className=" w-1/3 pb-10 flex justify-end md:justify-center md:w-full">
+                {sameUser && (
+                <div className="w-1/3 pb-10 flex justify-end md:justify-center md:w-full">
                     <div className="flex flex-col gap-5 h-full">
-                        <div className="flex justify-between gap-3 pb-[3rem] relative sm:pb-[2rem]">
-                            <div className="absolute">
-                                <button
-                                    className={`p-2  border-primaryPink ease-in-out duration-[80ms] ${
-                                        filterBy === "opened" &&
-                                        "border-primaryPink border-b-[4px] text-primaryPink"
-                                    } hover:border-primaryPink hover:border-b-[4px] hover:text-primaryPink`}
-                                    onClick={() => setFilterBy("opened")}
-                                >
-                                    Aktywne
-                                </button>
-                                <button
-                                    className={`absolute p-2 left-[6.5rem] border-primaryPink border-0 ease-in-out duration-[80ms] ${
-                                        filterBy === "ended" &&
-                                        "border-primaryPink border-b-[4px] text-primaryPink"
-                                    } hover:border-primaryPink hover:border-b-[4px] hover:text-primaryPink`}
-                                    onClick={() => setFilterBy("ended")}
-                                >
-                                    Zakończone
-                                </button>
+                            <div className="flex justify-between gap-3 pb-[3rem] relative sm:pb-[2rem]">
+                                    <button
+                                        className={`p-2  border-primaryPink ease-in-out duration-[80ms] ${
+                                            filterBy === "opened" &&
+                                            "border-primaryPink border-b-[4px] text-primaryPink"
+                                        } hover:border-primaryPink hover:border-b-[4px] hover:text-primaryPink`}
+                                        onClick={() => setFilterBy("opened")}
+                                    >
+                                        Aktywne
+                                    </button>
+                                    <button
+                                        className={`p-2 left-[6.5rem] border-primaryPink border-0 ease-in-out duration-[80ms] ${
+                                            filterBy === "ended" &&
+                                            "border-primaryPink border-b-[4px] text-primaryPink"
+                                        } hover:border-primaryPink hover:border-b-[4px] hover:text-primaryPink`}
+                                        onClick={() => setFilterBy("ended")}
+                                    >
+                                        Zakończone
+                                    </button>
                             </div>
-                        </div>
-                        {isLoggedIn && (
+                        <div className="flex justify-between gap-3 pb-[3rem] relative sm:pb-[2rem]">
                             <Link href="/post/create">
                                 <button className="py-2 px-4  w-full rounded-[10px] transition ease-in-out delay-50 bg-primaryPink text-white hover:bg-secondaryPink hover:text-primaryPink active:bg-[#ffb8b8] active:text-white focus:bg-primaryPink focus:text-white">
                                     Dodaj ogłoszenie
                                 </button>
                             </Link>
-                        )}
+                        </div>
                     </div>
                 </div>
-                <div className="mx-auto w-2/3 md:w-full ">
+                )}
+                <div className={`mx-auto ${sameUser?"w-2/3":"w-full"} md:w-full`}>
                     <Container css={{ display: "flex", justifyContent: "center", gap: "$10" }}>
                         <PostList posts={posts} refreshPosts={refreshPosts} />
                         {posts.length > 0 && (
