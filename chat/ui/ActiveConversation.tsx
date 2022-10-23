@@ -18,9 +18,13 @@ export default function ActiveConversation({
 }: ActiveConversationProps) {
 
     return (
-        <Container>
-            <MessageList messages={messages}/>
-            <MessageInput sendMessage={sendMessage}/>
-        </Container>
+        <div className="flex  flex-col justify-between bg-[lightgreen] w-full ">
+            <div className="overflow-scroll overflow-x-hidden h-[90%]">
+                <MessageList messages={messages}/>
+            </div>
+            <div>
+                <MessageInput sendMessage={sendMessage}/>
+            </div>
+        </div>
     );
 }

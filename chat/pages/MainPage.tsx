@@ -52,14 +52,14 @@ export default function MainPage() {
                 <FullPageError content={"There are no active conversations!"} />
             ) : (
                 <div className="min-h-screen">
-                    <div className="flex py-5 bg-[#fff] rounded-[15px] ">
-                        <div className="flex flex-col w-1/4 px-5">
+                    <div className="flex py-5 bg-[#fff] h-[80vh] rounded-[15px] ">
+                        <div className="flex flex-col w-1/4 px-5 ">
                             <div className="py-2 px-2">
                                 <span className="font-[700] text-[20px] md:text-[18px]">
                                     Wiadomości
                                 </span>
                             </div>
-                            <div className="w-full h-full ">
+                            <div className="w-full h-full overflow-scroll overflow-x-hidden">
                                 <ConversationList
                                     activeConverstionId={activeConversationId}
                                     conversations={converstions}
@@ -67,20 +67,15 @@ export default function MainPage() {
                                 />
                             </div>
                         </div>
-                        <div className="flex w-3/4 bg-primaryPink  ">
-                            <div className="flex flex-col bg-[red] w-full h-full ">
-                                <div>a</div>
-                                <div className=" bg-primaryPink rounded-[30px]">
-                                    {converstions.length !== 0 && (
-                                        <ActiveConversation
-                                            activeConversationId={activeConversationId}
-                                            messages={messages}
-                                            sendMessage={sendMessage}
-                                            loadOldMessages={loadOldMessages}
-                                        />
-                                    )}
-                                </div>
-                            </div>
+                        <div className="flex w-3/4 bg-primaryPink h-full ">
+                            {converstions.length !== 0 && (
+                                <ActiveConversation
+                                    activeConversationId={activeConversationId}
+                                    messages={messages}
+                                    sendMessage={sendMessage}
+                                    loadOldMessages={loadOldMessages}
+                                />
+                            )}
                         </div>
                     </div>
                 </div>

@@ -9,3 +9,21 @@
     font-family: 'Quicksand', Arial;
     box-sizing: border-box;
 }
+
+::-webkit-scrollbar {
+    width: 12px;
+}
+  
+::-webkit-scrollbar-track {
+    background: #fff; 
+
+}
+   
+::-webkit-scrollbar-thumb {
+    background: #b0b0b0; 
+    border-radius: 10px;
+}
+  
+::-webkit-scrollbar-thumb:hover {
+    background: rgb(84, 84, 84)0b0; 
+}
