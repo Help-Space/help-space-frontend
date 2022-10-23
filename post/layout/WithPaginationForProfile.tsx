@@ -5,6 +5,7 @@ import PostList from "post/ui/List";
 import { useEffect, useState } from "react";
 import FullPageLoading from "../../shared/ui/FullPageLoading";
 import { useUser } from "user/store/useUser";
+import {useRouter} from "next/router";
 
 interface PostsWithPaginationProps {
     getPosts: (page: number) => Promise<Posts>;
@@ -17,9 +18,11 @@ export default function PostsWithPagination({ getPosts }: PostsWithPaginationPro
     const [posts, setPosts] = useState<Post[]>([]);
     const [page, setPage] = useState(1);
     const [totalPages, setTotalPages] = useState(0);
+    const router = useRouter();
 
     useEffect(() => {
         setIsLoading(true);
+        if (!router.isReady) return;
         (async () => {
             let newPosts;
             try {
@@ -30,10 +33,14 @@ export default function PostsWithPagination({ getPosts }: PostsWithPaginationPro
             } finally {
                 setIsLoading(false);
             }
-            setPosts(newPosts.posts);
+            if (router.query.user == userId) {
+                setPosts(newPosts.posts);
+            } else {
+                setPosts(newPosts.posts.filter((post) => post.isOpen));
+            }
             setTotalPages(newPosts.pages);
         })();
-    }, [page]);
+    }, [page, router.isReady]);
 
     if (error) {
         return (
