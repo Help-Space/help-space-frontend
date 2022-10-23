@@ -57,7 +57,7 @@ export default function PostsWithPagination({ getPosts }: PostsWithPaginationPro
             <div className="flex py-10 md:flex-col">
                 {isLoggedIn && (
                     <div className=" w-1/3 pb-10 flex justify-end md:justify-center md:w-full">
-                            <div className="flex flex-col gap-5 fixed md:relative h-auto">
+                            <div className="flex flex-col gap-5 md:relative h-auto">
                                 <Link href="/post/create">
                                     <button className="py-2 px-5 rounded-[10px] transition ease-in-out delay-50 bg-primaryPink text-white hover:bg-secondaryPink hover:text-primaryPink active:bg-[#ffb8b8] active:text-white focus:bg-primaryPink focus:text-white">
                                         Dodaj ogłoszenie

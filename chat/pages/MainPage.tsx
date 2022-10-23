@@ -4,9 +4,13 @@ import ConversationList from "../ui/ConversationList";
 import FullPageError from "../../shared/ui/FullPageError";
 import FullPageLoading from "../../shared/ui/FullPageLoading";
 import useAuthRedirect from "user/hooks/useAuthRedirect";
+import { useEffect } from "react";
+import { useRouter } from "next/router";
 
 export default function MainPage() {
+    const router = useRouter();
     const {
+        conversationCreate,
         changeConversation,
         activeConversationId,
         messages,
@@ -18,6 +22,14 @@ export default function MainPage() {
     } = useChat();
 
     useAuthRedirect({ redirectWhen: "unathorized", redirectPath: "/login" });
+
+    useEffect(() => {
+        const searchParams = new URL(window.location.href).searchParams;
+        const postId = searchParams.get("postId");
+        if (!postId) return;
+        conversationCreate(postId);
+        router.push("/conversations");
+    }, []);
 
     if (error) {
         return (
@@ -49,6 +61,7 @@ export default function MainPage() {
                             </div>
                             <div className="w-full h-full ">
                                 <ConversationList
+                                    activeConverstionId={activeConversationId}
                                     conversations={converstions}
                                     changeConversation={changeConversation}
                                 />
