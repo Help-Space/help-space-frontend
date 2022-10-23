@@ -5,7 +5,7 @@ import PostCard from "./Card";
 
 interface PostListProps {
     posts: Post[];
-    refreshPosts: () => void;
+    refreshPosts: () => Promise<void>;
 }
 
 export default function PostList({ posts, refreshPosts }: PostListProps) {

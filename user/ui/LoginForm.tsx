@@ -45,7 +45,7 @@ export default function LoginForm() {
             </Head>
             <main className="flex w-[100%] font-quicksand text-mediumDark xxxl:min-h-screen xxl:min-h-0">
                 <div className="flex w-1/2 ml-auto lg:w-[100%]">
-                    <div className="flex flex-col items-center gap-[60px] ml-auto mr-[250px] xxl:mr-auto py-[80px] md:py-[40px] md:px-[5%]">
+                    <div className="flex flex-col items-center gap-[60px] ml-auto mr-[250px] xxl:mr-auto py-[70px] md:py-[40px] md:px-[5%]">
                         <div className="flex flex-col items-center gap-3">
                             <img
                                 src="helpspace_logo_circles.svg"
@@ -59,29 +59,31 @@ export default function LoginForm() {
                                 Zyskaj dostęp do wszystkich funkcjonalności<br/> naszej aplikacji!
                             </span>
                         </div>
-                        <div className="flex flex-col gap-5">
-                            <Input
-                                clearable
-                                {...bindings}
-                                type="email"
-                                underlined
-                                labelPlaceholder="Email"
-                                shadow={false}
-                                onClearClick={reset}
-                                status={helper.color}
-                                color={helper.color}
-                                helperColor={helper.color}
-                                helperText={helper.text}
-                            />
-                            <Input.Password
-                                value={password}
-                                clearable
-                                underlined
-                                type="password"
-                                placeholder="Hasło"
-                                onChange={(e) => setPassword(e.target.value)}
-                            />
-                            {error && <p className="whitespace-pre-line text-center">{error}</p>}
+                        <div className="relative flex justify-center">
+                            <div className="flex flex-col gap-5">
+                                <Input
+                                    clearable
+                                    {...bindings}
+                                    type="email"
+                                    underlined
+                                    labelPlaceholder="Email"
+                                    shadow={false}
+                                    onClearClick={reset}
+                                    status={helper.color}
+                                    color={helper.color}
+                                    helperColor={helper.color}
+                                    helperText={helper.text}
+                                />
+                                <Input.Password
+                                    value={password}
+                                    clearable
+                                    underlined
+                                    type="password"
+                                    placeholder="Hasło"
+                                    onChange={(e) => setPassword(e.target.value)}
+                                />
+                            </div>
+                            {error && <p className="whitespace-pre-line text-center absolute -bottom-10 text-primaryPink">{error}</p>}
                         </div>
                         <div>
                             <Button

@@ -58,7 +58,7 @@ export default function RegisterForm() {
             </Head>
             <main className="flex w-[100%] font-quicksand text-mediumDark xxxl:min-h-screen xxl:min-h-0">
                 <div className="flex w-1/2 ml-auto lg:w-[100%]">
-                    <div className="flex flex-col items-center gap-[60px] py-[80px] ml-auto mr-[250px] xxl:mr-auto md:py-[40px] md:px-[5%]">
+                    <div className="flex flex-col items-center gap-[50px] py-[70px] ml-auto mr-[250px] xxl:mr-auto md:py-[40px] md:px-[5%]">
                         <div className="flex flex-col items-center gap-3">
                             <img
                                 src="helpspace_logo_circles.svg"
@@ -72,73 +72,75 @@ export default function RegisterForm() {
                                 Zyskaj dostęp do wszystkich funkcjonalności<br/> naszej aplikacji!
                             </span>
                         </div>
-                        <div className="flex flex-col gap-[40px] py-[30px]">
-                            <div className="flex gap-8 md:flex-col">
-                                <Input
-                                    value={firstName}
+                        <div className="relative flex justify-center">
+                            <div className="flex flex-col gap-[40px] py-[30px]">
+                                <div className="flex gap-8 md:flex-col">
+                                    <Input
+                                        value={firstName}
+                                        clearable
+                                        type="text"
+                                        underlined
+                                        labelPlaceholder="Imie"
+                                        css={{ width: "100%" }}
+                                        onChange={(e) => setFirstName(e.target.value)}
+                                    />
+                                    <Input
+                                        value={lastName}
+                                        onChange={(e) => setLastName(e.target.value)}
+                                        clearable
+                                        type="text"
+                                        underlined
+                                        labelPlaceholder="Nazwisko"
+                                        css={{ width: "100%" }}
+                                    />
+                                </div>
+                                <div className="flex gap-[40px] md:flex-col">
+                                    <Input
+                                        clearable
+                                        {...bindings}
+                                        value={email}
+                                        onChange={(e) => setEmail(e.target.value)}
+                                        type="email"
+                                        underlined
+                                        labelPlaceholder="Email"
+                                        shadow={false}
+                                        onClearClick={reset}
+                                        status={helper.color}
+                                        color={helper.color}
+                                        helperColor={helper.color}
+                                        helperText={helper.text}
+                                        css={{ width: "100%" }}
+                                    />
+                                    <Input
+                                        value={birthDate}
+                                        onChange={(e) => setBirthDate(e.target.value)}
+                                        underlined
+                                        type="date"
+                                        placeholder="Data urodzenia"
+                                        css={{ width: "100%" }}
+                                    />
+                                </div>
+                                <Input.Password
                                     clearable
-                                    type="text"
                                     underlined
-                                    labelPlaceholder="Imie"
+                                    value={password}
+                                    onChange={(e) => setPassword(e.target.value)}
+                                    type="password"
+                                    placeholder="Hasło"
                                     css={{ width: "100%" }}
-                                    onChange={(e) => setFirstName(e.target.value)}
                                 />
-                                <Input
-                                    value={lastName}
-                                    onChange={(e) => setLastName(e.target.value)}
+                                <Input.Password
                                     clearable
-                                    type="text"
                                     underlined
-                                    labelPlaceholder="Nazwisko"
+                                    value={confirmPassword}
+                                    onChange={(e) => setConfirmPassword(e.target.value)}
+                                    type="password"
+                                    placeholder="Potwierdź hasło"
                                     css={{ width: "100%" }}
                                 />
                             </div>
-                            <div className="flex gap-[40px] md:flex-col">
-                                <Input
-                                    clearable
-                                    {...bindings}
-                                    value={email}
-                                    onChange={(e) => setEmail(e.target.value)}
-                                    type="email"
-                                    underlined
-                                    labelPlaceholder="Email"
-                                    shadow={false}
-                                    onClearClick={reset}
-                                    status={helper.color}
-                                    color={helper.color}
-                                    helperColor={helper.color}
-                                    helperText={helper.text}
-                                    css={{ width: "100%" }}
-                                />
-                                <Input
-                                    value={birthDate}
-                                    onChange={(e) => setBirthDate(e.target.value)}
-                                    underlined
-                                    type="date"
-                                    placeholder="Data urodzenia"
-                                    css={{ width: "100%" }}
-                                />
-                            </div>
-                            <Input.Password
-                                clearable
-                                underlined
-                                value={password}
-                                onChange={(e) => setPassword(e.target.value)}
-                                type="password"
-                                placeholder="Hasło"
-                                css={{ width: "100%" }}
-                            />
-                            <Input.Password
-                                clearable
-                                underlined
-                                value={confirmPassword}
-                                onChange={(e) => setConfirmPassword(e.target.value)}
-                                type="password"
-                                placeholder="Potwierdź hasło"
-                                css={{ width: "100%" }}
-                            />
+                            {error && <p className="whitespace-pre-line text-center absolute -bottom-10 text-primaryPink">{error}</p>}
                         </div>
-                        {error && <p>{error}</p>}
                         <div>
                             <Button
                                 className="bg-primaryPink text-white hover:bg-secondaryPink hover:text-primaryPink active:bg-[#ffb8b8] active:text-white focus:bg-primaryPink focus:text-white"

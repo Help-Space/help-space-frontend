@@ -1,4 +1,4 @@
-import { Container, Input, Loading, Pagination, Button } from "@nextui-org/react";
+import { Container, Loading, Pagination } from "@nextui-org/react";
 import Link from "next/link";
 import { Post, Posts } from "post/types";
 import PostList from "post/ui/List";
@@ -82,10 +82,9 @@ export default function PostsWithPagination({ getPosts }: PostsWithPaginationPro
                                 </button>
                             </div>
                         </div>
-                        <Input size="xl" clearable labelPlaceholder="Wyszukaj..." />
                         {isLoggedIn && (
                             <Link href="/post/create">
-                                <button className="py-2 rounded-[10px] transition ease-in-out delay-50 bg-primaryPink text-white hover:bg-secondaryPink hover:text-primaryPink active:bg-[#ffb8b8] active:text-white focus:bg-primaryPink focus:text-white">
+                                <button className="py-2  rounded-[10px] transition ease-in-out delay-50 bg-primaryPink text-white hover:bg-secondaryPink hover:text-primaryPink active:bg-[#ffb8b8] active:text-white focus:bg-primaryPink focus:text-white">
                                     Dodaj ogłoszenie
                                 </button>
                             </Link>
