@@ -6,6 +6,7 @@ import FullPageError from "../../shared/ui/FullPageError";
 import {useUser} from "../../user/store/useUser";
 import FullPageLoading from "../../shared/ui/FullPageLoading";
 import useAuthRedirect from "user/hooks/useAuthRedirect";
+import { useEffect } from "react";
 
 export default function MainPage() {
     const {changeConversation, activeConversationId, messages, sendMessage, loadOldMessages, converstions, error, isLoading} = useChat();
@@ -31,8 +32,8 @@ export default function MainPage() {
     return (
         <>
             {converstions.length === 0 ? <FullPageError content={"There are no active conversations!"} /> : (
-                <>
-                    <div className="flex py-5 bg-[#fff] rounded-[15px]">
+                <div className="min-h-screen">
+                    <div className="flex py-5 bg-[#fff] rounded-[15px] ">
                         <div className="flex flex-col w-1/4 px-5">
                             <div className="py-2 px-2">
                                 <span className="font-[700] text-[20px] md:text-[18px]">Wiadomości</span>
@@ -42,8 +43,11 @@ export default function MainPage() {
                             </div> 
                         </div>
                         <div className="flex w-3/4 bg-primaryPink  ">
-                            <div className="bg-[red] w-full h-full ">
-                                <div className="bg-primaryPink rounded-[30px]">
+                            <div className="flex flex-col bg-[red] w-full h-full ">
+                                <div>
+a
+                                </div>
+                                <div className=" bg-primaryPink rounded-[30px]">
                                     { 
                                         converstions.length !== 0 && <ActiveConversation activeConversationId={activeConversationId} messages={messages} sendMessage={sendMessage} loadOldMessages={loadOldMessages} />
                                     } 
@@ -51,7 +55,7 @@ export default function MainPage() {
                             </div> 
                         </div>
                     </div>
-                </>
+                </div>
             )}
         </>
     );
