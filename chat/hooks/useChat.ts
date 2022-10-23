@@ -26,11 +26,7 @@ export default function useChat() {
         socket.on("message", (message: Message) => {
             if (message.conversation !== activeConversationIdRef.current) return;
 
-            setMessages((msgs) => {
-                console.log(msgs, message);
-
-                return [...msgs, message];
-            });
+            setMessages((msgs) => [...msgs, message]);
         });
         socket.on("messages", (messages: Message[]) => {
             if (messages.length < 1 || messages[0].conversation !== activeConversationIdRef.current)
