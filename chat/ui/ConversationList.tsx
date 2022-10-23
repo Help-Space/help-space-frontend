@@ -9,11 +9,11 @@ interface ConversationListProps {
 
 export default function ConversationList({conversations, changeConversation}: ConversationListProps) {
     return (
-        <Container>
+        <div >
             {conversations.map((conversation) => {
                 return <ConversationCard conversation={conversation} key={conversation._id}
                                          changeConversation={changeConversation}/>;
             })}
-        </Container>
+        </div>
     );
 }

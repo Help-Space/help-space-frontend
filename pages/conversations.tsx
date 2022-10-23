@@ -9,8 +9,10 @@ const Home: NextPage = () => {
                 <title>HelpSpace | Konwersacje</title>
                 <link rel="icon" href="/helpspace_logo_icon.svg" />
             </Head>
-            <main className="max-w-[1320px] min-h-screen mx-auto">
-                <MainPage />
+            <main className="bg-[#F4F4F4]">
+                <div className="max-w-[1320px] mx-auto py-5">
+                    <MainPage />
+                </div>
             </main>
         </>
     );
