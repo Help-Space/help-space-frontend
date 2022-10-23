@@ -6,6 +6,7 @@ import { io, Socket } from "socket.io-client";
 export default function useChat() {
     const socketRef = useRef<Socket>();
 
+    const activeConversationIdRef = useRef("");
     const [activeConversationId, setActiveConversationId] = useState<string>("");
     const [conversations, setConversations] = useState<Conversation[]>([]);
     const [messages, setMessages] = useState<Message[]>([]);
@@ -19,22 +20,28 @@ export default function useChat() {
             setConversations(conversations);
             changeConversation(conversations[0]._id);
         });
-        socket.on("converstionCreated", (newConversation: Conversation) => {
+        socket.on("conversationCreated", (newConversation: Conversation) => {
             setConversations((conversations) => [newConversation, ...conversations]);
         });
         socket.on("message", (message: Message) => {
-            if (message.conversation !== activeConversationId) return;
-            setMessages((msgs) => [...msgs, message]);
+            if (message.conversation !== activeConversationIdRef.current) return;
+
+            setMessages((msgs) => {
+                console.log(msgs, message);
+
+                return [...msgs, message];
+            });
         });
         socket.on("messages", (messages: Message[]) => {
-            if (messages.length < 1 || messages[0].conversation !== activeConversationId) return;
+            if (messages.length < 1 || messages[0].conversation !== activeConversationIdRef.current)
+                return;
             setMessages((msgs) => [...messages, ...msgs]);
         });
     };
 
     const connect = () => {
         try {
-            const socket = io(BACKEND_URL, {withCredentials: true});
+            const socket = io(BACKEND_URL, { withCredentials: true });
             socketRef.current = socket;
             setUpListeners(socket);
         } catch (err: any) {
@@ -63,8 +70,9 @@ export default function useChat() {
     };
 
     const changeConversation = (conversationId: string) => {
-        setActiveConversationId(conversationId);
         setMessages([]);
+        activeConversationIdRef.current = conversationId;
+        setActiveConversationId(conversationId);
         loadMessages(conversationId, 0);
     };
 

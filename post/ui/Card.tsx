@@ -130,7 +130,8 @@ function DropdownMenu({
     );
 }
 
-function ButtonConv() {
+function ButtonConv({ postId }: { postId: string }) {
+    const router = useRouter();
     return (
         <>
             <Spacer y={1} />
@@ -138,6 +139,7 @@ function ButtonConv() {
                 <Button
                     css={{ fontSize: "$lg" }}
                     className="md:w-full bg-primaryPink text-white hover:bg-secondaryPink hover:text-primaryPink active:bg-[#ffb8b8] active:text-white focus:bg-primaryPink focus:text-white"
+                    onClick={() => router.push(`/conversations/?postId=${postId}`)}
                 >
                     Napisz
                 </Button>
@@ -237,7 +239,7 @@ export default function PostCard({
                         Pokaż więcej...
                     </span>
                 )}
-                {authorId !== userId && isLoggedIn && <ButtonConv />}
+                {authorId !== userId && isLoggedIn && <ButtonConv postId={postId} />}
             </div>
         </Card>
     );

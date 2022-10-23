@@ -1,18 +1,29 @@
-import {Container, Text} from "@nextui-org/react";
+import { Container, Text } from "@nextui-org/react";
 import ConversationCard from "./ConversationCard";
-import {Conversation} from "../types";
+import { Conversation } from "../types";
 
 interface ConversationListProps {
+    activeConverstionId: string;
     conversations: Conversation[];
     changeConversation: (conversationId: string) => void;
 }
 
-export default function ConversationList({conversations, changeConversation}: ConversationListProps) {
+export default function ConversationList({
+    activeConverstionId,
+    conversations,
+    changeConversation,
+}: ConversationListProps) {
     return (
-        <div >
+        <div>
             {conversations.map((conversation) => {
-                return <ConversationCard conversation={conversation} key={conversation._id}
-                                         changeConversation={changeConversation}/>;
+                return (
+                    <ConversationCard
+                        isActive={activeConverstionId === conversation._id}
+                        conversation={conversation}
+                        key={conversation._id}
+                        changeConversation={changeConversation}
+                    />
+                );
             })}
         </div>
     );
