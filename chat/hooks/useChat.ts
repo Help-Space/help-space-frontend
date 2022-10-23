@@ -21,8 +21,8 @@ export default function useChat() {
             changeConversation(conversations[0]._id);
         });
         socket.on("conversationCreated", (newConversation: Conversation) => {
-            setConversations((conversations) => [newConversation, ...conversations]);
-            setActiveConversationId(newConversation._id);
+            setConversations((conversations) => [...conversations, newConversation]);
+            changeConversation(newConversation._id);
         });
         socket.on("message", (message: Message) => {
             if (message.conversation !== activeConversationIdRef.current) return;
