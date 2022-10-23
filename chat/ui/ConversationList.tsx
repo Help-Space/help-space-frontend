@@ -1,4 +1,3 @@
-import { Container, Text } from "@nextui-org/react";
 import ConversationCard from "./ConversationCard";
 import { Conversation } from "../types";
 
