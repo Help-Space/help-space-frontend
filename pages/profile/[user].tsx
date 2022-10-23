@@ -73,7 +73,7 @@ function UserBaner() {
 function ProfileDescriptionText() {
     return (
         <div className="text-mediumDark">
-            <div className="flex flex-col gap-[2rem] sm:gap-[1rem]">
+            <div className="flex flex-col gap-[2rem] sm:gap-[1.5rem]">
                 <span className="font-[700] text-[32px] sm:text-[28px]">Ogłoszenia</span>
                 <span className="font-[300] text-[18px] w-1/2 lg:w-full sm:text-[16px]">
                     Lorem Ipsum is simply dummy text of the printing and printer. Lorem Ipsum is
@@ -110,9 +110,9 @@ const Profile: NextPage = () => {
                 <title>HelpSpace | Ogłoszenia</title>
                 <link rel="icon" href="/helpspace_logo_icon.svg" />
             </Head>
-            <main className="min-h-screen md:min-h-[auto]">
+            <main>
                 <UserBaner />
-                <div className="max-w-[2320px] mx-auto py-[10rem] sm:py-[5rem] px-[10%] sm:px-[5%] lg:pt-[6rem]">
+                <div className="max-w-[2320px] mx-auto pt-[10rem] pb-[5rem] md:pt-[5rem] sm:pt-[3rem] xl:pb-[2.5rem]  px-[10%] sm:px-[5%]">
                     <ProfileDescriptionText />
                 </div>
                 {router.isReady && (

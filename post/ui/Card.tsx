@@ -170,13 +170,14 @@ export default function PostCard({
                 >
                     {title}
                 </span>
-                {authorId !== userId && isLoggedIn ? (
-                    <div>
-                        <LikeButton postId={postId} liked={liked} />
-                    </div>
-                ) : (
-                    <DropdownMenu id={postId} />
-                )}
+                {authorId !== userId ? (
+                        <div>
+                            <LikeButton postId={postId} liked={liked} />
+                        </div>
+                    ) : (
+                        <DropdownMenu id={postId} />
+                    )
+                }
             </div>
             <div>
                 <div className="flex font-quicksand" style={{ paddingInline: "1.5rem" }}>
