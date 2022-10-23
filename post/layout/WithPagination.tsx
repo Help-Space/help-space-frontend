@@ -59,7 +59,7 @@ export default function PostsWithPagination({ getPosts, withClosed }: PostsWithP
         <div className="max-w-[1320px] mx-auto xxl:min-h-auto overflow-auto">
             <div className="flex py-10 md:flex-col">
                 <div className=" w-1/3 pb-10 flex justify-end md:justify-center md:w-full">
-                    <div className="flex flex-col gap-5 h-full fixed md:relative">
+                    <div className="flex flex-col gap-5 fixed md:relative h-auto">
                         <Input
                             size="xl"
                             clearable
