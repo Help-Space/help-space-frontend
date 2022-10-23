@@ -74,7 +74,7 @@ export default function MessageInput({ sendMessage }: { sendMessage: (message: s
 
     const handleSubmit = (e: SyntheticEvent<HTMLFormElement> | MouseEvent) => {
         e.preventDefault();
-        if (content) {
+        if (content && !error) {
             sendMessage(content);
             setContent("");
         }

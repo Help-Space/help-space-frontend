@@ -20,17 +20,17 @@ export default function MessageContainer({
             placement="top"
         >
             <div
-                className={`flex flex-col break-words w-max-[60%] ${
+                className={`flex flex-col break-words w-auto max-w-[60%] pr-5 ${
                     author._id === userId && "ml-auto"
                 }`}
             >
                 {showAuthor && (
-                    <p className=" w-auto px-2 text-[12px]">
-                        {author._id === userId ? "Ty" : author.first_name + " " + author.last_name}
+                    <p className=" w-auto px-2 text-[12px] break-words">
+                        {author._id === userId ? "Ty:" : author.first_name + " " + author.last_name}
                     </p>
                 )}
                 <p
-                    className={`bg-[#e8e8e8] p-2 rounded-xl ${
+                    className={`break-words bg-[#e8e8e8] p-2 rounded-xl ${
                         author._id === userId && "bg-[#ffdfdf]"
                     }`}
                 >
