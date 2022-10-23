@@ -5,10 +5,10 @@ import PostList from "post/ui/List";
 import { useEffect, useState } from "react";
 import FullPageLoading from "../../shared/ui/FullPageLoading";
 import { useUser } from "user/store/useUser";
-import {useRouter} from "next/router";
+import { useRouter } from "next/router";
 
 interface PostsWithPaginationProps {
-    getPosts: (page: number) => Promise<Posts>;
+    getPosts: (page: number, filterBy: string) => Promise<Posts>;
 }
 
 export default function PostsWithPagination({ getPosts }: PostsWithPaginationProps) {
@@ -18,29 +18,27 @@ export default function PostsWithPagination({ getPosts }: PostsWithPaginationPro
     const [posts, setPosts] = useState<Post[]>([]);
     const [page, setPage] = useState(1);
     const [totalPages, setTotalPages] = useState(0);
-    const router = useRouter();
+    const [filterBy, setFilterBy] = useState<"opened" | "ended">("opened");
+
+    const refreshPosts = async () => {
+        setIsLoading(true);
+        let newPosts;
+        try {
+            newPosts = await getPosts(page, filterBy);
+        } catch (err) {
+            setError((err as Error).message);
+            return;
+        } finally {
+            setIsLoading(false);
+        }
+        setPosts(newPosts.posts);
+        setTotalPages(newPosts.pages);
+    };
 
     useEffect(() => {
-        setIsLoading(true);
-        if (!router.isReady) return;
-        (async () => {
-            let newPosts;
-            try {
-                newPosts = await getPosts(page);
-            } catch (err) {
-                setError((err as Error).message);
-                return;
-            } finally {
-                setIsLoading(false);
-            }
-            if (router.query.user == userId) {
-                setPosts(newPosts.posts);
-            } else {
-                setPosts(newPosts.posts.filter((post) => post.isOpen));
-            }
-            setTotalPages(newPosts.pages);
-        })();
-    }, [page, router.isReady]);
+        refreshPosts();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [filterBy, page]);
 
     if (error) {
         return (
@@ -65,27 +63,29 @@ export default function PostsWithPagination({ getPosts }: PostsWithPaginationPro
                         <div className="flex justify-between gap-3 pb-[3rem] relative sm:pb-[2rem]">
                             <div className="absolute">
                                 <button
-                                    className={`p-2 border-primaryPink ease-in-out duration-[80ms] active:border-b-[4px]  hover:border-primaryPink hover:border-b-[4px] hover:text-primaryPink  focus:border-primaryPink focus:border-b-[4px] focus:text-primaryPink`}
-                                    >
+                                    className={`p-2  border-primaryPink ease-in-out duration-[80ms] ${
+                                        filterBy === "opened" &&
+                                        "border-primaryPink border-b-[4px] text-primaryPink"
+                                    } hover:border-primaryPink hover:border-b-[4px] hover:text-primaryPink`}
+                                    onClick={() => setFilterBy("opened")}
+                                >
                                     Aktywne
                                 </button>
                                 <button
-                                    className={`absolute p-2 left-[6.5rem] border-primaryPink border-0 ease-in-out duration-[80ms] active:border-b-[4px] active:border-primaryPink active:text-primaryPink  hover:border-primaryPink hover:border-b-[4px] hover:text-primaryPink  focus:border-primaryPink focus:border-b-[4px] focus:text-primaryPink`}
+                                    className={`absolute p-2 left-[6.5rem] border-primaryPink border-0 ease-in-out duration-[80ms] ${
+                                        filterBy === "ended" &&
+                                        "border-primaryPink border-b-[4px] text-primaryPink"
+                                    } hover:border-primaryPink hover:border-b-[4px] hover:text-primaryPink`}
+                                    onClick={() => setFilterBy("ended")}
                                 >
                                     Zakończone
                                 </button>
                             </div>
                         </div>
-                        <Input
-                            size="xl" 
-                            clearable
-                            labelPlaceholder="Wyszukaj..."
-                        />
+                        <Input size="xl" clearable labelPlaceholder="Wyszukaj..." />
                         {isLoggedIn && (
                             <Link href="/post/create">
-                                <button
-                                    className="py-2 rounded-[10px] transition ease-in-out delay-50 bg-primaryPink text-white hover:bg-secondaryPink hover:text-primaryPink active:bg-[#ffb8b8] active:text-white focus:bg-primaryPink focus:text-white"
-                                >
+                                <button className="py-2 rounded-[10px] transition ease-in-out delay-50 bg-primaryPink text-white hover:bg-secondaryPink hover:text-primaryPink active:bg-[#ffb8b8] active:text-white focus:bg-primaryPink focus:text-white">
                                     Dodaj ogłoszenie
                                 </button>
                             </Link>
@@ -93,10 +93,8 @@ export default function PostsWithPagination({ getPosts }: PostsWithPaginationPro
                     </div>
                 </div>
                 <div className="w-2/3 md:w-full">
-                    <Container
-                        css={{ display: "flex", justifyContent: "center", gap: "$10" }}
-                    >
-                        <PostList posts={posts} />
+                    <Container css={{ display: "flex", justifyContent: "center", gap: "$10" }}>
+                        <PostList posts={posts} refreshPosts={refreshPosts} />
                         {posts.length > 0 && (
                             <Pagination
                                 page={page}

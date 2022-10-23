@@ -19,25 +19,23 @@ export default function PostsWithPagination({ getPosts, withClosed }: PostsWithP
     const [page, setPage] = useState(1);
     const [totalPages, setTotalPages] = useState(0);
 
-    useEffect(() => {
+    const refreshPosts = async () => {
         setIsLoading(true);
-        (async () => {
-            let newPosts;
-            try {
-                newPosts = await getPosts(page);
-            } catch (err) {
-                setError((err as Error).message);
-                return;
-            } finally {
-                setIsLoading(false);
-            }
-            if (withClosed) {
-                setPosts(newPosts.posts);
-            } else {
-                setPosts(newPosts.posts.filter((post) => post.isOpen));
-            }
-            setTotalPages(newPosts.pages);
-        })();
+        let newPosts;
+        try {
+            newPosts = await getPosts(page);
+        } catch (err) {
+            setError((err as Error).message);
+            return;
+        } finally {
+            setIsLoading(false);
+        }
+        setPosts(newPosts.posts);
+        setTotalPages(newPosts.pages);
+    };
+
+    useEffect(() => {
+        refreshPosts();
     }, [page]);
 
     if (error) {
@@ -67,9 +65,7 @@ export default function PostsWithPagination({ getPosts, withClosed }: PostsWithP
                         />
                         {isLoggedIn && (
                             <Link href="/post/create">
-                                <button
-                                    className="py-2 rounded-[10px] transition ease-in-out delay-50 bg-primaryPink text-white hover:bg-secondaryPink hover:text-primaryPink active:bg-[#ffb8b8] active:text-white focus:bg-primaryPink focus:text-white"
-                                >
+                                <button className="py-2 rounded-[10px] transition ease-in-out delay-50 bg-primaryPink text-white hover:bg-secondaryPink hover:text-primaryPink active:bg-[#ffb8b8] active:text-white focus:bg-primaryPink focus:text-white">
                                     Dodaj ogłoszenie
                                 </button>
                             </Link>
@@ -81,7 +77,7 @@ export default function PostsWithPagination({ getPosts, withClosed }: PostsWithP
                         className=""
                         css={{ display: "flex", justifyContent: "center", gap: "$10" }}
                     >
-                        <PostList posts={posts} />
+                        <PostList posts={posts} refreshPosts={refreshPosts} />
                         {posts.length > 0 && (
                             <Pagination
                                 page={page}
