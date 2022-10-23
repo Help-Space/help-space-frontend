@@ -150,11 +150,7 @@ export default function PostByIdPage() {
                             >
                                 {post.title}
                             </span>
-                            {post.author.id !== user.id ? (
-                                <div>
-                                    <LikeButton postId={post.id} liked={post.liked} />
-                                </div>
-                            ) : (
+                            {post.author.id === user.id && (
                                 <DropdownMenu
                                     id={post.id}
                                     title={post.title}

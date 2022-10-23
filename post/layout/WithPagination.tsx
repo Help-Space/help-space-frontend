@@ -8,10 +8,9 @@ import { useUser } from "user/store/useUser";
 
 interface PostsWithPaginationProps {
     getPosts: (page: number) => Promise<Posts>;
-    withClosed?: boolean;
 }
 
-export default function PostsWithPagination({ getPosts, withClosed }: PostsWithPaginationProps) {
+export default function PostsWithPagination({ getPosts }: PostsWithPaginationProps) {
     const { id: userId, isLoggedIn } = useUser();
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState<string>();
@@ -56,23 +55,16 @@ export default function PostsWithPagination({ getPosts, withClosed }: PostsWithP
     return (
         <div className="max-w-[1320px] mx-auto xxl:min-h-auto overflow-auto">
             <div className="flex py-10 md:flex-col">
-                <div className=" w-1/3 pb-10 flex justify-end md:justify-center md:w-full">
+                {isLoggedIn && (
                     <div className="flex flex-col gap-5 fixed md:relative h-auto">
-                        <Input
-                            size="xl"
-                            clearable
-                            labelPlaceholder="Wyszukaj..."
-                        />
-                        {isLoggedIn && (
-                            <Link href="/post/create">
-                                <button className="py-2 rounded-[10px] transition ease-in-out delay-50 bg-primaryPink text-white hover:bg-secondaryPink hover:text-primaryPink active:bg-[#ffb8b8] active:text-white focus:bg-primaryPink focus:text-white">
-                                    Dodaj ogłoszenie
-                                </button>
-                            </Link>
-                        )}
+                        <Link href="/post/create">
+                            <button className="py-2 rounded-[10px] transition ease-in-out delay-50 bg-primaryPink text-white hover:bg-secondaryPink hover:text-primaryPink active:bg-[#ffb8b8] active:text-white focus:bg-primaryPink focus:text-white">
+                                Dodaj ogłoszenie
+                            </button>
+                        </Link>
                     </div>
-                </div>
-                <div className=" w-2/3 md:w-full">
+                )}
+                <div className={`mx-auto md:w-full`}>
                     <Container
                         className=""
                         css={{ display: "flex", justifyContent: "center", gap: "$10" }}
