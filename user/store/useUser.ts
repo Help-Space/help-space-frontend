@@ -30,6 +30,7 @@ const initialState = {
 
 export const useUser = create<UserState>()((set) => ({
     ...initialState,
+    isLoading: true,
     async logIn(email, password) {
         if (!email || !password) {
             throw new Error("Email i hasło nie mogą być puste");
