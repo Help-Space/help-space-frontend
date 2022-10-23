@@ -22,9 +22,8 @@ export default function Footer() {
                         </div>
                         <ul className=" text-white pt-5 font-[300]">
                             <li><Link href="/">Strona główna</Link></li>
-                            <li><Link href="/">Ogłoszenia</Link></li>
-                            <li><Link href="/">Informacje</Link></li>
-                            <li><Link href="/">Wydarzenia</Link></li>
+                            <li><Link href="https://documenter.getpostman.com/view/18056614/2s84DssfhU">Dokumentacja API</Link></li>
+                            <li><Link href="/about">Informacje</Link></li>
                         </ul>
                     </div>
                     <div>
@@ -34,7 +33,7 @@ export default function Footer() {
                         </div>
                         <ul className="text-white pt-5 font-[300]">
                             <li><Link href="/">Ogłoszenia</Link></li>
-                            <li><Link href="/">Polubienia</Link></li>
+                            <li><Link href="/favourite">Polubienia</Link></li>
                             <li><Link href="/post/create">Dodaj ogłoszenie</Link></li>
                         </ul>
                     </div>
@@ -44,7 +43,7 @@ export default function Footer() {
                             <div className="h-[2px] w-[30px] bg-white absolute -bottom-[5px] left-0 rounded-[20px]"></div>
                         </div>
                         <ul className="text-white pt-5 font-[300]">
-                            <li><Link href="/">Twój profil</Link></li>
+                            <li><Link href="/profile">Twój profil</Link></li>
                             <li><Link href="/conversations">Wiadomości</Link></li>
                         </ul>
                     </div>

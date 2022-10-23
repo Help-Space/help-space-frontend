@@ -33,13 +33,13 @@ export default function MainPage() {
                 <ActiveConversation activeConversationId={activeConversationId} messages={messages} sendMessage={sendMessage} loadOldMessages={loadOldMessages} />
             </div>
 
-            {/* {!isLoggedIn && <FullPageError content={"Login to see your conversations!"}/>}
+            {!isLoggedIn && <FullPageError content={"Login to see your conversations!"}/>}
             {converstions.length === 0 && isLoggedIn && <FullPageError content={"There are no active conversations!"}/>}
             <ConversationList conversations={converstions} changeConversation={changeConversation} />
 
 
             {converstions.length !== 0 &&
-                <ActiveConversation activeConversationId={activeConversationId} messages={messages} sendMessage={sendMessage} loadOldMessages={loadOldMessages} />} */}
+                <ActiveConversation activeConversationId={activeConversationId} messages={messages} sendMessage={sendMessage} loadOldMessages={loadOldMessages} />}
         </Container>
     );
 }

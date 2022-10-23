@@ -47,18 +47,20 @@ export default function PostsWithPagination({ getPosts }: PostsWithPaginationPro
     }
 
     return (
-        <Container
-            css={{ display: "flex", justifyContent: "center", gap: "$10", marginBlock: "$10" }}
-        >
-            <PostList posts={posts} />
-            {posts.length > 0 && (
-                <Pagination
-                    page={page}
-                    total={totalPages}
-                    onChange={(newPage) => setPage(newPage)}
-                    color="error"
-                />
-            )}
-        </Container>
+        <div className="max-w-[1320px] mx-auto">
+            <Container
+                css={{ display: "flex", justifyContent: "center", gap: "$10", marginBlock: "$15" }}
+            >
+                <PostList posts={posts} />
+                {posts.length > 0 && (
+                    <Pagination
+                        page={page}
+                        total={totalPages}
+                        onChange={(newPage) => setPage(newPage)}
+                        color="error"
+                    />
+                )}
+            </Container>
+        </div>
     );
 }
