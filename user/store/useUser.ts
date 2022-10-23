@@ -3,6 +3,7 @@ import { GetUserResponse, RegisterUserRequest } from "user/types/api";
 import create from "zustand";
 
 interface UserState {
+    isLoading: boolean;
     isLoggedIn: boolean;
     id: string;
     username: string;
@@ -17,6 +18,7 @@ interface UserState {
 }
 
 const initialState = {
+    isLoading: true,
     isLoggedIn: false,
     id: "",
     username: "",
@@ -84,6 +86,8 @@ export const useUser = create<UserState>()((set) => ({
         } catch (_) {
             set(initialState);
             return;
+        } finally {
+            set({ isLoading: false });
         }
         set({
             isLoggedIn: true,

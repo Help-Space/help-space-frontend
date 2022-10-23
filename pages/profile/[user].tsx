@@ -13,7 +13,7 @@ import FullPageLoading from "../../shared/ui/FullPageLoading";
 function UserBaner() {
     const router = useRouter();
     const [user, setUser] = useState<GetUserResponse>();
-    const [isLoading, setIsLoading] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
 
     const formatUser = (firstName = "", lastName = "") =>
         (firstName.substring(0, 1) + lastName.substring(0, 1)).toUpperCase();
@@ -24,7 +24,7 @@ function UserBaner() {
             setUser(user);
             setIsLoading(false);
         } catch (err) {
-            // router.push("/");
+            router.push("/");
         }
     };
 

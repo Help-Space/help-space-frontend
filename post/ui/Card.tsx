@@ -6,36 +6,41 @@ import { useMemo, useState } from "react";
 import { useUser } from "user/store/useUser";
 import { useRouter } from "next/router";
 import UserAvatar from "user/ui/Avatar";
+import LikeButton from "./LikeButton";
+import Link from "next/link";
 
-function DropdownMenu({ id } : { id: string }) {
-    
+function DropdownMenu({ id }: { id: string }) {
     return (
         <Dropdown>
-            <Dropdown.Button color="error" flat icon={<img src="/dropdown_icon.svg" alt="icon" />} ></Dropdown.Button>
+            <Dropdown.Button
+                color="error"
+                flat
+                icon={<img src="/dropdown_icon.svg" alt="icon" />}
+            ></Dropdown.Button>
             <Dropdown.Menu>
                 <Dropdown.Item key="refresh">
                     {/* <div onClick={() => postApi.refresh(id)}> */}
-                        Odśwież ogłoszenie
+                    Odśwież ogłoszenie
                     {/* </div> */}
                 </Dropdown.Item>
                 <Dropdown.Item key="close">
                     {/* <div onClick={() => postApi.update()> */}
-                        Zakończ ogłoszenie
+                    Zakończ ogłoszenie
                     {/* </div> */}
                 </Dropdown.Item>
                 <Dropdown.Item key="edit">
                     {/* <div> */}
-                        Edytuj ogłoszenie
+                    Edytuj ogłoszenie
                     {/* </div> */}
                 </Dropdown.Item>
                 <Dropdown.Item key="delete" withDivider color="error">
                     {/* <div onClick={() => postApi.remove(id)}> */}
-                        Usuń ogłoszenie
+                    Usuń ogłoszenie
                     {/* </div> */}
                 </Dropdown.Item>
             </Dropdown.Menu>
         </Dropdown>
-    )
+    );
 }
 
 function ButtonConv() {
@@ -66,21 +71,6 @@ export default function PostCard({
 
     const { id: userId, isLoggedIn } = useUser();
 
-    const [isLiked, setIsLiked] = useState(liked);
-    const like = () => {
-        try {
-            if (isLiked) {
-                postApi.removeLike(postId);
-                setIsLiked(false);
-                return;
-            }
-            postApi.addLike(postId);
-            setIsLiked(true);
-        } catch (err) {
-            console.error(err);
-        }
-    };
-
     const [showMore, setShowMore] = useState(false);
     const contentWords = useMemo(() => content.split(" "), [content]);
 
@@ -96,36 +86,31 @@ export default function PostCard({
             >
                 <span
                     className="font-[700] text-[20px] cursor-pointer md:text-[18px]"
-                    style={{ display: 'flex', flexWrap: 'wrap', wordBreak: 'break-word' }} 
+                    style={{ display: "flex", flexWrap: "wrap", wordBreak: "break-word" }}
                     onClick={() => router.push(`/post/${postId}`)}
                 >
                     {title}
                 </span>
                 {authorId !== userId && isLoggedIn ? (
-                        <div>
-                            <Tooltip
-                                content={"Musisz być zalogowany, by móc dodawać ogłoszenia do ulubionych"}
-                                css={{ display: isLoggedIn ? "none" : "block" }}
-                                className="self-end"
-                            >
-                                <Button
-                                    onClick={isLoggedIn ? like : undefined}
-                                    auto
-                                    icon={<HeartIcon fill={isLiked ? "#d4402c" : "black"} />}
-                                />
-                            </Tooltip>
-                        </div>
-                    ) : (
-                        <DropdownMenu id={postId} />
-                    )
-                }
+                    <div>
+                        <LikeButton postId={postId} liked={liked} />
+                    </div>
+                ) : (
+                    <DropdownMenu id={postId} />
+                )}
             </div>
             <div>
                 <div className="flex font-quicksand" style={{ paddingInline: "1.5rem" }}>
-                    <UserAvatar firstName={firstName} lastName={lastName} />
+                    <Link href={`/profile/${authorId}`}>
+                        <a>
+                            <UserAvatar firstName={firstName} lastName={lastName} />
+                        </a>
+                    </Link>
                     <Spacer x={0.5} />
                     <div className="flex flex-col">
-                        <span>{firstName + " " + lastName}</span>
+                        <Link href={`/profile/${authorId}`}>
+                            <a className="">{firstName + " " + lastName}</a>
+                        </Link>
                         <span style={{ fontSize: "12px" }}>
                             {new Date(lastRefresh).toLocaleString()}
                         </span>
