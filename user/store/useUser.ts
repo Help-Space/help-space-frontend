@@ -18,7 +18,7 @@ interface UserState {
 }
 
 const initialState = {
-    isLoading: true,
+    isLoading: false,
     isLoggedIn: false,
     id: "",
     username: "",
@@ -80,16 +80,16 @@ export const useUser = create<UserState>()((set) => ({
         });
     },
     async load() {
+        set({ isLoading: true });
         let user: GetUserResponse;
         try {
             user = await fetchApi("/user");
         } catch (_) {
             set(initialState);
             return;
-        } finally {
-            set({ isLoading: false });
         }
         set({
+            isLoading: false,
             isLoggedIn: true,
             id: user._id,
             username: user.username,
