@@ -58,27 +58,31 @@ export const useUser = create<UserState>()((set) => ({
             throw new Error("Wszystkie pola muszą być wypełnione!");
         }
 
-        const userRes: GetUserResponse = await fetchApi(
-            "/user/register",
-            {
+        try {
+            const userRes: GetUserResponse = await fetchApi(
+                "/user/register",
+                {
+                    email: user.email,
+                    password: user.password,
+                    first_name: user.firstName,
+                    last_name: user.lastName,
+                    birth_date: new Date(user.birthDate),
+                },
+                {
+                    method: "POST",
+                }
+            );
+            set({
+                isLoggedIn: true,
+                id: userRes._id,
+                username: userRes.username,
+                firstName: userRes.first_name,
+                lastName: userRes.last_name,
                 email: user.email,
-                password: user.password,
-                first_name: user.firstName,
-                last_name: user.lastName,
-                birth_date: new Date(user.birthDate),
-            },
-            {
-                method: "POST",
-            }
-        );
-        set({
-            isLoggedIn: true,
-            id: userRes._id,
-            username: userRes.username,
-            firstName: userRes.first_name,
-            lastName: userRes.last_name,
-            email: user.email,
-        });
+            });
+        } catch (errors:any) {
+            throw new Error(errors[0].msg);
+        }
     },
     async load() {
         set({ isLoading: true });
