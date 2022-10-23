@@ -18,11 +18,11 @@ export default function ActiveConversation({
 }: ActiveConversationProps) {
 
     return (
-        <div className="flex  flex-col justify-between bg-[lightgreen] w-full ">
-            <div className="overflow-scroll overflow-x-hidden h-[90%]">
+        <div className="flex flex-col justify-between w-full p-5">
+            <div className="overflow-scroll overflow-x-hidden h-[100%] ">
                 <MessageList messages={messages}/>
             </div>
-            <div>
+            <div className="h-max">
                 <MessageInput sendMessage={sendMessage}/>
             </div>
         </div>

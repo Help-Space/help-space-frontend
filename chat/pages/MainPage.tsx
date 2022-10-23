@@ -52,8 +52,8 @@ export default function MainPage() {
                 <FullPageError content={"There are no active conversations!"} />
             ) : (
                 <div className="min-h-screen">
-                    <div className="flex py-5 bg-[#fff] h-[80vh] rounded-[15px] ">
-                        <div className="flex flex-col w-1/4 px-5 ">
+                    <div className="flex p-5 bg-[#fff] h-[85vh] rounded-[15px] ">
+                        <div className="flex flex-col w-1/4  ">
                             <div className="py-2 px-2">
                                 <span className="font-[700] text-[20px] md:text-[18px]">
                                     Wiadomości
@@ -67,7 +67,7 @@ export default function MainPage() {
                                 />
                             </div>
                         </div>
-                        <div className="flex w-3/4 bg-primaryPink h-full ">
+                        <div className="flex w-3/4  h-full border-[1px] border-[#d4d4d4] rounded-[20px]">
                             {converstions.length !== 0 && (
                                 <ActiveConversation
                                     activeConversationId={activeConversationId}

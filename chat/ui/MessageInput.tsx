@@ -37,7 +37,7 @@ export const SendButton = styled('button', {
 });
 
 const SendIcon = ({
-    fill = "currentColor",
+    fill = "#fff",
     filled,
     size,
     height,
@@ -89,8 +89,9 @@ export default function MessageInput({sendMessage}: {sendMessage: (message: stri
 
     return (
         <form onSubmit={handleSubmit}>
-            <div className="flex w-full bg-[blue]">
+            <div className="flex w-full ">
                 <Input
+                    css={{ width: '100%', padding: '5px' }}
                     clearable
                     contentRightStyling={false}
                     placeholder="Wyślij wiadomość..."
