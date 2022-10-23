@@ -68,10 +68,9 @@ export default function RegisterForm() {
                             <Text b size="$3xl" className="font-quicksand font-[700]">
                                 Załóż konto!
                             </Text>
-                            <Text className="font-quicksand text-center text-lightDark tracking-[1px] leading-[22px]">
-                                Lorem Ipsum is simply dummy text
-                                <br /> of the printing and printer.
-                            </Text>
+                            <span className="font-quicksand text-center text-lightDark tracking-[1px] leading-[22px]">
+                                Zyskaj dostęp do wszystkich funkcjonalności<br/> naszej aplikacji!
+                            </span>
                         </div>
                         <div className="flex flex-col gap-[40px] py-[30px]">
                             <div className="flex gap-8 md:flex-col">
