@@ -1,5 +1,17 @@
 import { Post } from "post/types";
-import { Button, Card, Spacer, Tooltip, Dropdown } from "@nextui-org/react";
+import {
+    Button,
+    Card,
+    Spacer,
+    Tooltip,
+    Dropdown,
+    Popover,
+    Row,
+    Text,
+    Modal,
+    Input,
+    Checkbox,
+} from "@nextui-org/react";
 import HeartIcon from "./HeartIcon";
 import { postApi } from "post/api";
 import { useMemo, useState } from "react";
@@ -8,6 +20,72 @@ import { useRouter } from "next/router";
 import UserAvatar from "user/ui/Avatar";
 import LikeButton from "./LikeButton";
 import Link from "next/link";
+
+function EditPost() {
+    const [visible, setVisible] = useState(false);
+    const handler = () => setVisible(true);
+    const closeHandler = () => {
+        setVisible(false);
+        console.log("closed");
+    };
+    return (
+        <div>
+            <span onClick={handler}>Open modal</span>
+            <Modal
+                closeButton
+                blur
+                aria-labelledby="modal-title"
+                open={visible}
+                onClose={closeHandler}
+            >
+                <Modal.Header>
+                    <Text id="modal-title" size={18}>
+                        Welcome to
+                        <Text b size={18}>
+                            NextUI
+                        </Text>
+                    </Text>
+                </Modal.Header>
+                <Modal.Body>
+                    <Input
+                        clearable
+                        bordered
+                        fullWidth
+                        color="primary"
+                        size="lg"
+                        placeholder="Email"
+                    />
+                    <Input
+                        clearable
+                        bordered
+                        fullWidth
+                        color="primary"
+                        size="lg"
+                        placeholder="Password"
+                    />
+                    <Row justify="space-between">
+                        <Checkbox>
+                            <Text size={14}>Remember me</Text>
+                        </Checkbox>
+                        <Text size={14}>Forgot password?</Text>
+                    </Row>
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button auto flat color="error" onClick={closeHandler}>
+                        Close
+                    </Button>
+                    <Button
+                        auto
+                        onClick={closeHandler}
+                        className="bg-primaryPink text-white hover:bg-secondaryPink hover:text-primaryPink active:bg-[#ffb8b8] active:text-white  focus:bg-primaryPink focus:text-white"
+                    >
+                        Sign in
+                    </Button>
+                </Modal.Footer>
+            </Modal>
+        </div>
+    );
+}
 
 function DropdownMenu({ id }: { id: string }) {
     return (
@@ -29,8 +107,9 @@ function DropdownMenu({ id }: { id: string }) {
                     {/* </div> */}
                 </Dropdown.Item>
                 <Dropdown.Item key="edit">
+                    <EditPost />
                     {/* <div> */}
-                    Edytuj ogłoszenie
+                    {/* Edytuj ogłoszenie */}
                     {/* </div> */}
                 </Dropdown.Item>
                 <Dropdown.Item key="delete" withDivider color="error">
@@ -47,7 +126,7 @@ function ButtonConv() {
     return (
         <>
             <Spacer y={1} />
-            <div style={{ paddingInline: "1.5rem", paddingBottom: "1rem" }}>
+            <div className="px-[1.5rem] pb-[1rem] sm:px-[1rem] sm:pb-[0.5rem]">
                 <Button
                     css={{ fontSize: "$lg" }}
                     className="md:w-full bg-primaryPink text-white hover:bg-secondaryPink hover:text-primaryPink active:bg-[#ffb8b8] active:text-white focus:bg-primaryPink focus:text-white"
@@ -130,8 +209,7 @@ export default function PostCard({
                 <Spacer y={1} />
                 {contentWords.length > 100 && !showMore && (
                     <span
-                        className="text-mediumDark font-bold underline-offset-1"
-                        style={{ paddingInline: "1.5rem" }}
+                        className="text-mediumDark font-bold underline-offset-1 px-[1.5rem] "
                         onClick={() => setShowMore(true)}
                     >
                         Pokaż więcej...

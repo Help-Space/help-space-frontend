@@ -50,7 +50,8 @@ export default function PostsWithPagination({ getPosts }: PostsWithPaginationPro
     return (
         <div className="max-w-[1320px] mx-auto">
             <Container
-                css={{ display: "flex", justifyContent: "center", gap: "$10", marginBlock: "$15" }}
+                className="w-2/3 md:w-full"
+                css={{ display: "flex", justifyContent: "center", gap: "$10", marginBlock: "$15"}}
             >
                 <PostList posts={posts} />
                 {posts.length > 0 && (

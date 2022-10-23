@@ -110,9 +110,9 @@ const Profile: NextPage = () => {
                 <title>HelpSpace | Ogłoszenia</title>
                 <link rel="icon" href="/helpspace_logo_icon.svg" />
             </Head>
-            <main className="bg-[#F4F4F4]">
+            <main className="min-h-screen md:min-h-[auto]">
                 <UserBaner />
-                <div className="max-w-[2320px] mx-auto py-[8rem] px-[10%] sm:px-[5%] sm:py-[4rem] lg:py-[6rem]">
+                <div className="max-w-[2320px] mx-auto py-[10rem] sm:py-[5rem] px-[10%] sm:px-[5%] lg:pt-[6rem]">
                     <ProfileDescriptionText />
                 </div>
                 {router.isReady && (
