@@ -57,6 +57,7 @@ export default function PostByIdPage() {
     const router = useRouter();
     const user = useUser();
     const [post, setPost] = useState<Post>();
+    const { isLoggedIn } = useUser();
     const [isLoading, setIsLoading] = useState(true);
     const refreshPosts = async () => {
         setIsLoading(true);
@@ -127,7 +128,8 @@ export default function PostByIdPage() {
                                     <div className="flex gap-3">
                                         <Button
                                             css={{ fontSize: "$lg" }}
-                                            className="w-auto bg-primaryPink text-white hover:bg-secondaryPink hover:text-primaryPink active:bg-[#ffb8b8] active:text-white focus:bg-primaryPink focus:text-white"
+                                            disabled={!isLoggedIn}
+                                            className={`w-auto ${ isLoggedIn ? "bg-primaryPink" : "bg-[#d3d3d3]"} text-white hover:bg-secondaryPink hover:text-primaryPink active:bg-[#ffb8b8] active:text-white focus:bg-primaryPink focus:text-white`}
                                         >
                                             Napisz
                                         </Button>
