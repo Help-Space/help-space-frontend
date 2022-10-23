@@ -1,5 +1,4 @@
-import { Container, Loading, Pagination, Text } from "@nextui-org/react";
-import { postApi } from "post/api";
+import { Container, Loading, Pagination } from "@nextui-org/react";
 import { Post, Posts } from "post/types";
 import PostList from "post/ui/List";
 import { useEffect, useState } from "react";

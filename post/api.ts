@@ -61,7 +61,7 @@ const getByPage = async (page: number) => {
 };
 
 const getByAuthor = async (authorId: string, page: number) => {
-    return await getPosts(`/posts?page=${page}&author=${authorId}`);
+    return await getPosts(`/posts?page=${page}&authorId=${authorId}`);
 };
 
 const getLiked = async (page: number) => {

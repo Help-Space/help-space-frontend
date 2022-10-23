@@ -9,7 +9,7 @@ interface UserState {
     firstName: string;
     lastName: string;
     email: string;
-    created_at: Date;
+    created_at: string;
     logIn: (email: string, password: string) => Promise<void>;
     logOut: () => Promise<void>;
     register: (user: RegisterUserRequest) => Promise<void>;
@@ -23,7 +23,7 @@ const initialState = {
     firstName: "",
     lastName: "",
     email: "",
-    created_at: new Date(),
+    created_at: "",
 };
 
 export const useUser = create<UserState>()((set) => ({
