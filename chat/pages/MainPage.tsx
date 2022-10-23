@@ -5,10 +5,13 @@ import ConversationList from "../ui/ConversationList";
 import FullPageError from "../../shared/ui/FullPageError";
 import {useUser} from "../../user/store/useUser";
 import FullPageLoading from "../../shared/ui/FullPageLoading";
+import useAuthRedirect from "user/hooks/useAuthRedirect";
 
 export default function MainPage() {
-    const {changeConversation, activeConversationId, conversationCreate, messages, sendMessage, loadOldMessages, converstions, error, isLoading} = useChat();
+    const {changeConversation, activeConversationId, messages, sendMessage, loadOldMessages, converstions, error, isLoading} = useChat();
     const {isLoggedIn} = useUser();
+
+    useAuthRedirect({ redirectWhen: "unathorized", redirectPath: '/login'})
 
     if (error) {
         return (
@@ -26,35 +29,30 @@ export default function MainPage() {
     }
 
     return (
-        // <Container css={{ display: "flex", justifyContent: "center", gap: "$10", bg: 'lightgreen' }} >
-        <Container className="flex bg-lightDark py-5" >
-            <div className="flex w-1/4 bg-[blue] ">
-                <div className="bg-secondaryPink w-full h-full ">
-                    <ConversationList conversations={converstions} changeConversation={changeConversation}  />
-                </div> 
-            </div>
-            <div className="flex w-3/4 bg-primaryPink  ">
-                <div className="bg-[red] w-full h-full ">
-                    a
-                </div> 
-            </div>
-
-
-
-            {/* <div className="bg-primaryPink rounded-full">
-                <ConversationList conversations={converstions} changeConversation={changeConversation}  />
-            </div>
-            <div className="bg-primaryPink rounded-[30px]">
-                <ActiveConversation activeConversationId={activeConversationId} messages={messages} sendMessage={sendMessage} loadOldMessages={loadOldMessages} />
-            </div>
-
-            {!isLoggedIn && <FullPageError content={"Login to see your conversations!"}/>}
-            {converstions.length === 0 && isLoggedIn && <FullPageError content={"There are no active conversations!"}/>}
-            <ConversationList conversations={converstions} changeConversation={changeConversation} />
-
-
-            {converstions.length !== 0 &&
-                <ActiveConversation activeConversationId={activeConversationId} messages={messages} sendMessage={sendMessage} loadOldMessages={loadOldMessages} />} */}
-        </Container>
+        <>
+            {converstions.length === 0 ? <FullPageError content={"There are no active conversations!"} /> : (
+                <>
+                    <div className="flex py-5 bg-[#fff] rounded-[15px]">
+                        <div className="flex flex-col w-1/4 px-5">
+                            <div className="py-2 px-2">
+                                <span className="font-[700] text-[20px] md:text-[18px]">Wiadomości</span>
+                            </div>
+                            <div className="w-full h-full ">
+                                <ConversationList conversations={converstions} changeConversation={changeConversation}  />
+                            </div> 
+                        </div>
+                        <div className="flex w-3/4 bg-primaryPink  ">
+                            <div className="bg-[red] w-full h-full ">
+                                <div className="bg-primaryPink rounded-[30px]">
+                                    { 
+                                        converstions.length !== 0 && <ActiveConversation activeConversationId={activeConversationId} messages={messages} sendMessage={sendMessage} loadOldMessages={loadOldMessages} />
+                                    } 
+                                </div>
+                            </div> 
+                        </div>
+                    </div>
+                </>
+            )}
+        </>
     );
 }
