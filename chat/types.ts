@@ -9,7 +9,7 @@ export interface Message {
     author: User;
     message: string;
     conversation: string;
-    created_at: Date;
+    created_at: string;
 }
 
 export interface ConversationPost {
