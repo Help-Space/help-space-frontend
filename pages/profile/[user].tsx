@@ -9,6 +9,7 @@ import { GetUserResponse } from "user/types/api";
 import PostsWithPagination from "post/layout/WithPagination";
 import { postApi } from "post/api";
 import FullPageLoading from "../../shared/ui/FullPageLoading";
+import {useUser} from "../../user/store/useUser";
 
 function UserBaner() {
     const router = useRouter();
@@ -99,6 +100,7 @@ function ProfileDescriptionText() {
 
 const Profile: NextPage = () => {
     const router = useRouter();
+    const {id} = useUser();
     return (
         <>
             <Head>
@@ -115,6 +117,7 @@ const Profile: NextPage = () => {
                         getPosts={(page: number) =>
                             postApi.getByAuthor(router.query.user as string, page)
                         }
+                        withClosed={router.query.user == id}
                     />
                 )}
             </main>

@@ -41,7 +41,7 @@ function DropdownPanel() {
                                 </Text>
                             </Dropdown.Item>
                             <Dropdown.Item key="profile" withDivider>
-                                <Link href="/">Twój profil</Link>
+                                <Link href="/profile">Twój profil</Link>
                             </Dropdown.Item>
                             <Dropdown.Item key="new" withDivider>
                                 <Link href="/post/create">Dodaj ogłoszenie</Link>

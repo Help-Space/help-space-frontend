@@ -6,9 +6,10 @@ import FullPageLoading from "../../shared/ui/FullPageLoading";
 
 interface PostsWithPaginationProps {
     getPosts: (page: number) => Promise<Posts>;
+    withClosed?: boolean;
 }
 
-export default function PostsWithPagination({ getPosts }: PostsWithPaginationProps) {
+export default function PostsWithPagination({ getPosts, withClosed }: PostsWithPaginationProps) {
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState<string>();
     const [posts, setPosts] = useState<Post[]>([]);
@@ -27,7 +28,11 @@ export default function PostsWithPagination({ getPosts }: PostsWithPaginationPro
             } finally {
                 setIsLoading(false);
             }
-            setPosts(newPosts.posts);
+            if (withClosed) {
+                setPosts(newPosts.posts);
+            } else {
+                setPosts(newPosts.posts.filter((post) => post.isOpen));
+            }
             setTotalPages(newPosts.pages);
         })();
     }, [page]);
