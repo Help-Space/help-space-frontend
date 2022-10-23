@@ -28,7 +28,6 @@ export default function MainPage() {
         const postId = searchParams.get("postId");
         if (!postId) return;
         conversationCreate(postId);
-        router.push("/conversations");
     }, []);
 
     if (error) {

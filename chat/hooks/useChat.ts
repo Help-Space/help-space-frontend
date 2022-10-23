@@ -22,10 +22,10 @@ export default function useChat() {
         });
         socket.on("conversationCreated", (newConversation: Conversation) => {
             setConversations((conversations) => [newConversation, ...conversations]);
+            setActiveConversationId(newConversation._id);
         });
         socket.on("message", (message: Message) => {
             if (message.conversation !== activeConversationIdRef.current) return;
-
             setMessages((msgs) => [...msgs, message]);
         });
         socket.on("messages", (messages: Message[]) => {

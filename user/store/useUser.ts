@@ -80,8 +80,10 @@ export const useUser = create<UserState>()((set) => ({
                 lastName: userRes.last_name,
                 email: user.email,
             });
-        } catch (errors:any) {
-            throw new Error(errors[0].msg);
+        } catch (errors: any) {
+            if (errors[0] && errors[0].msg) {
+                throw new Error(errors[0].msg);
+            }
         }
     },
     async load() {
