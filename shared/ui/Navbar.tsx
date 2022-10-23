@@ -45,19 +45,37 @@ function DropdownPanel() {
                                 </Link>
                             </Dropdown.Item>
                             <Dropdown.Item key="profile" withDivider>
-                                <Link href="/profile">Twój profil</Link>
+                                <Link href="/profile">
+                                    <div>
+                                        Twój profil
+                                    </div>
+                                </Link>
                             </Dropdown.Item>
                             <Dropdown.Item key="new" withDivider>
-                                <Link href="/post/create">Dodaj ogłoszenie</Link>
+                                    <Link href="/post/create">
+                                        <div>
+                                            Dodaj ogłoszenie
+                                        </div>
+                                    </Link>
                             </Dropdown.Item>
                             <Dropdown.Item key="favorite">
-                                <Link href="/favourite">Polubione</Link>
+                                <Link href="/favourite">
+                                    <div>
+                                        Polubione
+                                    </div>
+                                </Link>
                             </Dropdown.Item>
                             <Dropdown.Item key="conversations">
-                                <Link href="/conversations">Wiadomości</Link>
+                                <Link href="/conversations">
+                                    <div>
+                                        Wiadomości
+                                    </div>
+                                </Link>
                             </Dropdown.Item>
                             <Dropdown.Item key="rules" withDivider>
-                                Regluamin
+                                <div>
+                                    Regluamin
+                                </div>
                             </Dropdown.Item>
                             <Dropdown.Item key="logout" color="error">
                                 <div onClick={logOut}>Wyloguj się</div>
