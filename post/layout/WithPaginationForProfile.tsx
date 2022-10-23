@@ -62,6 +62,20 @@ export default function PostsWithPagination({ getPosts }: PostsWithPaginationPro
             <div className="flex py-10 md:flex-col">
                 <div className=" w-1/3 pb-10 flex justify-end md:justify-center md:w-full">
                     <div className="flex flex-col gap-5 h-full">
+                        <div className="flex justify-between gap-3 pb-[3rem] relative sm:pb-[2rem]">
+                            <div className="absolute">
+                                <button
+                                    className="p-2  border-primaryPink ease-in-out duration-[80ms] active:border-primaryPink active:text-primaryPink hover:border-primaryPink hover:border-b-[4px] hover:text-primaryPink  focus:border-primaryPink focus:border-b-[4px] focus:text-primaryPink"
+                                    >
+                                    Aktywne
+                                    </button>
+                                <button
+                                    className="absolute p-2 left-[6.5rem] border-primaryPink border-0 ease-in-out duration-[80ms] active:border-primaryPink active:text-primaryPink hover:border-primaryPink hover:border-b-[4px] hover:text-primaryPink  focus:border-primaryPink focus:border-b-[4px] focus:text-primaryPink"
+                                >
+                                    Zakończone
+                                </button>
+                            </div>
+                        </div>
                         <Input
                             size="xl" 
                             clearable
@@ -78,9 +92,8 @@ export default function PostsWithPagination({ getPosts }: PostsWithPaginationPro
                         )}
                     </div>
                 </div>
-                <div className=" w-2/3 md:w-full">
+                <div className="w-2/3 md:w-full">
                     <Container
-                        className=""
                         css={{ display: "flex", justifyContent: "center", gap: "$10" }}
                     >
                         <PostList posts={posts} />
