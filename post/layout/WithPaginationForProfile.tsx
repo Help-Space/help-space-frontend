@@ -57,7 +57,7 @@ export default function PostsWithPagination({ getPosts }: PostsWithPaginationPro
 
     return (
         <div className="max-w-[1320px] mx-auto xxl:min-h-auto overflow-auto">
-            <div className="flex py-10 md:flex-col">
+            <div className="flex py-10 md:flex-col gap-10">
                 <div className=" w-1/3 pb-10 flex justify-end md:justify-center md:w-full">
                     <div className="flex flex-col gap-5 h-full">
                         <div className="flex justify-between gap-3 pb-[3rem] relative sm:pb-[2rem]">
@@ -84,14 +84,14 @@ export default function PostsWithPagination({ getPosts }: PostsWithPaginationPro
                         </div>
                         {isLoggedIn && (
                             <Link href="/post/create">
-                                <button className="py-2  rounded-[10px] transition ease-in-out delay-50 bg-primaryPink text-white hover:bg-secondaryPink hover:text-primaryPink active:bg-[#ffb8b8] active:text-white focus:bg-primaryPink focus:text-white">
+                                <button className="py-2 px-4  w-full rounded-[10px] transition ease-in-out delay-50 bg-primaryPink text-white hover:bg-secondaryPink hover:text-primaryPink active:bg-[#ffb8b8] active:text-white focus:bg-primaryPink focus:text-white">
                                     Dodaj ogłoszenie
                                 </button>
                             </Link>
                         )}
                     </div>
                 </div>
-                <div className="w-2/3 md:w-full">
+                <div className="mx-auto w-2/3 md:w-full ">
                     <Container css={{ display: "flex", justifyContent: "center", gap: "$10" }}>
                         <PostList posts={posts} refreshPosts={refreshPosts} />
                         {posts.length > 0 && (

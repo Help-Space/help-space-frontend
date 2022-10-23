@@ -101,7 +101,8 @@ function DropdownMenu({
     refreshPosts: () => Promise<void>;
 }) {
     const disabledKeys = !isOpen ? ["close", "refresh", "edit"] : [];
-    const onClick = async (updateFunc: () => Promise<string>) => {
+    const onClick = async (updateFunc: () => Promise<string>, key?: string) => {
+        if (!isOpen && !key) return
         await updateFunc();
         refreshPosts();
     };
@@ -123,7 +124,7 @@ function DropdownMenu({
                     </div>
                 </Dropdown.Item>
                 <Dropdown.Item key="delete" withDivider color="error">
-                    <div onClick={() => onClick(() => postApi.remove(id))}>Usuń ogłoszenie</div>
+                    <div onClick={() => onClick(() => postApi.remove(id), "delete" )}>Usuń ogłoszenie</div>
                 </Dropdown.Item>
             </Dropdown.Menu>
         </Dropdown>
