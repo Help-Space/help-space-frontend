@@ -26,8 +26,22 @@ export default function MainPage() {
     }
 
     return (
-        <Container css={{ display: "flex", justifyContent: "center", gap: "$10", bg: 'blue' }}>
-            <div className="bg-primaryPink rounded-full">
+        // <Container css={{ display: "flex", justifyContent: "center", gap: "$10", bg: 'lightgreen' }} >
+        <Container className="flex bg-lightDark py-5" >
+            <div className="flex w-1/4 bg-[blue] ">
+                <div className="bg-secondaryPink w-full h-full ">
+                    <ConversationList conversations={converstions} changeConversation={changeConversation}  />
+                </div> 
+            </div>
+            <div className="flex w-3/4 bg-primaryPink  ">
+                <div className="bg-[red] w-full h-full ">
+                    a
+                </div> 
+            </div>
+
+
+
+            {/* <div className="bg-primaryPink rounded-full">
                 <ConversationList conversations={converstions} changeConversation={changeConversation}  />
             </div>
             <div className="bg-primaryPink rounded-[30px]">
@@ -40,7 +54,7 @@ export default function MainPage() {
 
 
             {converstions.length !== 0 &&
-                <ActiveConversation activeConversationId={activeConversationId} messages={messages} sendMessage={sendMessage} loadOldMessages={loadOldMessages} />}
+                <ActiveConversation activeConversationId={activeConversationId} messages={messages} sendMessage={sendMessage} loadOldMessages={loadOldMessages} />} */}
         </Container>
     );
 }

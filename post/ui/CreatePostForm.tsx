@@ -17,8 +17,8 @@ export default function CreatePostForm() {
         !(
             title.length > 0 &&
             title.length <= 50 &&
-            description.length >= 30 &&
-            description.length <= 1000 &&
+            description.length >= 10 &&
+            description.length <= 2056 &&
             select
         );
 
@@ -51,7 +51,7 @@ export default function CreatePostForm() {
                 value={description}
                 onChange={(e) => setDescriptionValue(e.target.value)}
                 labelPlaceholder="Opis"
-                helperText={`Wpisz przynajmniej 30 znaków. ${description.length} / 1000`}
+                helperText={`Wpisz przynajmniej 10 znaków. ${description.length} / 2056`}
                 className="w-[100%]"
                 minRows={15}
             />
