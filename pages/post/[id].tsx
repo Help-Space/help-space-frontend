@@ -24,7 +24,8 @@ function DropdownMenu({
     refreshPosts: () => void;
 }) {
     const disabledKeys = !isOpen ? ["close", "refresh", "edit"] : [];
-    const onClick = async (updateFunc: () => Promise<string>) => {
+    const onClick = async (updateFunc: () => Promise<string>, key?: string) => {
+        if (!isOpen && !key) return
         await updateFunc();
         refreshPosts();
     };
@@ -46,7 +47,7 @@ function DropdownMenu({
                     </div>
                 </Dropdown.Item>
                 <Dropdown.Item key="delete" withDivider color="error">
-                    <div onClick={() => onClick(() => postApi.remove(id))}>Usuń ogłoszenie</div>
+                    <div onClick={() => onClick(() => postApi.remove(id), "delete")}>Usuń ogłoszenie</div>
                 </Dropdown.Item>
             </Dropdown.Menu>
         </Dropdown>
@@ -140,7 +141,7 @@ export default function PostByIdPage() {
                         </Card>
                     </div>
                     <Spacer x={2} />
-                    <Card css={{ border: "none" }} className="p-3 w-2/3 xl:w-full">
+                    <Card css={{ border: "none", opacity: post.isOpen ? 1 : 0.6 }}  className="p-3 w-2/3 xl:w-full">
                         <Card.Header css={{ justifyContent: "space-between" }}>
                             <span
                                 className="font-[700] text-[20px] md:text-[18px]"
@@ -150,7 +151,7 @@ export default function PostByIdPage() {
                                     wordBreak: "break-word",
                                 }}
                             >
-                                {post.title}
+                                {post.title}  {post.isOpen ? null : "(zakończone)"}
                             </span>
                             {post.author.id === user.id && (
                                 <DropdownMenu
