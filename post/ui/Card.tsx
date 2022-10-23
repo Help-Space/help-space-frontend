@@ -106,7 +106,7 @@ function ButtonConv() {
     return (
         <>
             <Spacer y={1} />
-            <div style={{ paddingInline: "1.5rem", paddingBottom: "1rem" }}>
+            <div  className="px-[1.5rem] pb-[1rem] sm:px-[1rem] sm:pb-[0.5rem]">
                 <Button
                     css={{ fontSize: "$lg" }}
                     className="md:w-full bg-primaryPink text-white hover:bg-secondaryPink hover:text-primaryPink active:bg-[#ffb8b8] active:text-white focus:bg-primaryPink focus:text-white"
@@ -209,8 +209,7 @@ export default function PostCard({
                 <Spacer y={1} />
                 {contentWords.length > 100 && !showMore && (
                     <span
-                        className="text-mediumDark font-bold underline-offset-1"
-                        style={{ paddingInline: "1.5rem" }}
+                        className="text-mediumDark font-bold underline-offset-1 px-[1.5rem] "
                         onClick={() => setShowMore(true)}
                     >
                         Pokaż więcej...
