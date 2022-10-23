@@ -3,14 +3,13 @@ import {
     Input,
     Text,
 } from "@nextui-org/react";
-import {ChangeEvent, SyntheticEvent, MouseEvent, useState} from "react";
+import { ChangeEvent, SyntheticEvent, MouseEvent, useState, SVGProps } from "react";
 import { styled } from '@nextui-org/react';
 
 export const SendButton = styled('button', {
   background: 'transparent',
   border: 'none',
   padding: 0,
-  margin: 0,
   width: '24px',
   margin: '0 10px',
   dflex: 'center',
@@ -45,7 +44,7 @@ const SendIcon = ({
     label,
     className,
     ...props
-  }) => {
+  }: SVGProps<SVGElement>) => {
     return (
       <svg
         data-name="Iconly/Curved/Lock"
@@ -74,6 +73,7 @@ export default function MessageInput({sendMessage}: {sendMessage: (message: stri
         const {value} = e.target;
         if (value.length <= 512) {
             setContent(e.target.value);
+            setError();
         } else {
             setError("Wiadomość nie może być dłuższa niż 512 znaków");
         }
@@ -89,7 +89,7 @@ export default function MessageInput({sendMessage}: {sendMessage: (message: stri
 
     return (
         <form onSubmit={handleSubmit}>
-            <div className="flex w-full ">
+            <div className="flex w-full relative">
                 <Input
                     css={{ width: '100%', padding: '5px' }}
                     clearable
@@ -102,9 +102,12 @@ export default function MessageInput({sendMessage}: {sendMessage: (message: stri
                             <SendIcon />
                         </SendButton>
                     }
+                    
                 />
+                {
+                    error && <Text color="error" className="absolute -bottom-4 left-2 text-[12px]">{error}</Text>
+                }
             </div>
-            <Text color="error">{error}</Text>
         </form>
     );
 }

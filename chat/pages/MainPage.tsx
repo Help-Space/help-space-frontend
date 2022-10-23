@@ -52,7 +52,7 @@ export default function MainPage() {
                 <FullPageError content={"There are no active conversations!"} />
             ) : (
                 <div className="min-h-screen">
-                    <div className="flex p-5 bg-[#fff] h-[85vh] rounded-[15px] ">
+                    <div className="flex p-5 bg-[#fff] h-[85vh] gap-1 rounded-[15px] ">
                         <div className="flex flex-col w-1/4  ">
                             <div className="py-2 px-2">
                                 <span className="font-[700] text-[20px] md:text-[18px]">

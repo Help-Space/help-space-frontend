@@ -22,7 +22,7 @@ export default function ActiveConversation({ messages, sendMessage }: ActiveConv
     }, [messages]);
 
     return (
-        <div className="flex flex-col justify-between w-full p-5">
+        <div className="flex flex-col justify-between w-full p-5 gap-[1.25rem]">
             <div className="overflow-scroll overflow-x-hidden h-[100%]" ref={messageListRef}>
                 <MessageList messages={messages} />
             </div>
