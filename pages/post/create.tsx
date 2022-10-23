@@ -6,7 +6,7 @@ function DescriptionCreatePost() {
     return (
         <div className="flex flex-col gap-5  justify-center items-center">
             <span className="text-[32px] font-[700] sm:text-[28px]">Dodaj ogłoszenie!</span>
-            <span className="text-center sm:text-[15px]">Lorem Ipsum is simply dummy text of the printing and printer. Lorem Ipsum is simply dummy text of the printing and printer. Lorem Ipsum is simply dummy text of the printing and printer.</span>
+            <span className="text-center sm:text-[15px]">Użyj chwytliwego tytułu, by z łatwością można było znaleźć twoje ogłoszenie!</span>
         </div>
     );
 }

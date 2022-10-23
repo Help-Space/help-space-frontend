@@ -7,11 +7,11 @@ export default function Footer() {
                 <div className="flex flex-col gap-5">
                     <img src="/helpspace_logo_footer.svg" alt="logo" className="w-[300px]" />
                     <span className="font-[300] text-base w-[350px] xl:w-[100%] sm:text-[15px]">
-                        Lorem Ipsum is simply dummy text of the printing and printer took a galley of type and scrambled it to.
+                        Dzięki HelpSpace możesz szybko i łatwo znaleźć pomoc w swojej okolicy. Pomóż innym, a inni pomogą Tobie.
                     </span>
                     <div className="flex gap-5 sm:gap-8">
-                        <img src="/github_icon.svg" alt="github" className="cursor-pointer" />
-                        <img src="/twitter_icon.svg" alt="github" className="cursor-pointer" />
+                        <Link href="https://github.com/Help-Space"><img src="/github_icon.svg" alt="github" className="cursor-pointer" /></Link>
+                        <Link href="https://twitter.com/Help-Space"><img src="/twitter_icon.svg" alt="github" className="cursor-pointer" /></Link>
                     </div>
                 </div>
                 <div className="flex flex-wrap gap-[150px] pt-[25px] md:gap-[50px]  sm:text-[15px]">

@@ -55,10 +55,9 @@ export default function LoginForm() {
                             <Text b size="$3xl" className="font-quicksand font-[700]">
                                 Zaloguj się!
                             </Text>
-                            <Text className="font-quicksand text-center text-lightDark tracking-[1px] leading-[22px]">
-                                Lorem Ipsum is simply dummy text
-                                <br /> of the printing and printer.
-                            </Text>
+                            <span className="font-quicksand text-center text-lightDark tracking-[1px] leading-[22px]">
+                                Zyskaj dostęp do wszystkich funkcjonalności<br/> naszej aplikacji!
+                            </span>
                         </div>
                         <div className="flex flex-col gap-5">
                             <Input

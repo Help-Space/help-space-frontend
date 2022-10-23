@@ -1,6 +1,6 @@
 import type { NextPage } from "next";
 import Head from "next/head";
-import { Button, Link, Loading } from "@nextui-org/react";
+import { Button, Link, Loading, Navbar } from "@nextui-org/react";
 import { default as NextLink } from "next/link";
 import { Router, useRouter } from "next/router";
 import { useEffect, useState } from "react";
@@ -73,13 +73,8 @@ function UserBaner() {
 function ProfileDescriptionText() {
     return (
         <div className="text-mediumDark">
-            <div className="flex flex-col gap-[2rem] sm:gap-[1rem]">
-                <span className="font-[700] text-[32px] sm:text-[28px]">Ogłoszenia</span>
-                <span className="font-[300] text-[18px] w-1/2 lg:w-full sm:text-[16px]">
-                    Lorem Ipsum is simply dummy text of the printing and printer. Lorem Ipsum is
-                    simply dummy text of the printing and printer. Lorem Ipsum is simply dummy text
-                    of the printing and printer.
-                </span>
+            <div className="flex flex-col gap-[2rem] sm:gap-[1.5rem]">
+                {/*<span className="font-[700] text-[32px] sm:text-[28px]">Ogłoszenia</span>*/}
                 {/* <Link href="/post/create">
                     <div>
                         <Button className="w-full  hidden md:block bg-primaryPink text-white hover:bg-secondaryPink hover:text-primaryPink active:bg-[#ffb8b8] active:text-white focus:bg-primaryPink focus:text-white">
@@ -89,14 +84,14 @@ function ProfileDescriptionText() {
                         </Button>
                     </div>
                 </Link> */}
-                <NextLink href="/post/create" passHref>
-                    <Button
-                        as="a"
-                        className="w-full hidden md:block bg-primaryPink text-white hover:bg-secondaryPink hover:text-primaryPink active:bg-[#ffb8b8] active:text-white focus:bg-primaryPink focus:text-white"
-                    >
-                        Dodaj ogłoszenie
-                    </Button>
-                </NextLink>
+                {/*<NextLink href="/post/create" passHref>*/}
+                {/*    <Button*/}
+                {/*        as="a"*/}
+                {/*        className="w-full hidden md:block bg-primaryPink text-white hover:bg-secondaryPink hover:text-primaryPink active:bg-[#ffb8b8] active:text-white focus:bg-primaryPink focus:text-white"*/}
+                {/*    >*/}
+                {/*        Dodaj ogłoszenie*/}
+                {/*    </Button>*/}
+                {/*</NextLink>*/}
             </div>
         </div>
     );
@@ -110,9 +105,9 @@ const Profile: NextPage = () => {
                 <title>HelpSpace | Ogłoszenia</title>
                 <link rel="icon" href="/helpspace_logo_icon.svg" />
             </Head>
-            <main className="min-h-screen md:min-h-[auto]">
+            <main>
                 <UserBaner />
-                <div className="max-w-[2320px] mx-auto py-[10rem] sm:py-[5rem] px-[10%] sm:px-[5%] lg:pt-[6rem]">
+                <div className="max-w-[2320px] mx-auto">
                     <ProfileDescriptionText />
                 </div>
                 {router.isReady && (
