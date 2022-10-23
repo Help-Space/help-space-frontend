@@ -98,7 +98,7 @@ function DropdownMenu({
     title: string;
     content: string;
     isOpen: boolean;
-    refreshPosts: () => void;
+    refreshPosts: () => Promise<void>;
 }) {
     const disabledKeys = !isOpen ? ["close", "refresh", "edit"] : [];
     const onClick = async (updateFunc: () => Promise<string>) => {
@@ -147,7 +147,7 @@ function ButtonConv() {
 }
 
 interface PostCardProps {
-    refreshPosts: () => void;
+    refreshPosts: () => Promise<void>;
 }
 
 export default function PostCard({
