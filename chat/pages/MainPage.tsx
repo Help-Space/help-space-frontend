@@ -2,8 +2,9 @@ import { Container, Loading } from "@nextui-org/react";
 import ActiveConversation from "chat/ui/ActiveConversation";
 import useChat from "../hooks/useChat";
 import ConversationList from "../ui/ConversationList";
-import FullPageError from "../ui/FullPageError";
+import FullPageError from "../../shared/ui/FullPageError";
 import {useUser} from "../../user/store/useUser";
+import FullPageLoading from "../../shared/ui/FullPageLoading";
 
 export default function MainPage() {
     const {changeConversation, activeConversationId, conversationCreate, messages, sendMessage, loadOldMessages, converstions, error, isLoading} = useChat();
@@ -21,7 +22,7 @@ export default function MainPage() {
     }
 
     if (isLoading) {
-        return <Loading />;
+        return <FullPageLoading />;
     }
 
     return (

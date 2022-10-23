@@ -2,6 +2,7 @@ import { Container, Loading, Pagination } from "@nextui-org/react";
 import { Post, Posts } from "post/types";
 import PostList from "post/ui/List";
 import { useEffect, useState } from "react";
+import FullPageLoading from "../../shared/ui/FullPageLoading";
 
 interface PostsWithPaginationProps {
     getPosts: (page: number) => Promise<Posts>;
@@ -43,7 +44,7 @@ export default function PostsWithPagination({ getPosts }: PostsWithPaginationPro
     }
 
     if (isLoading) {
-        return <Loading />;
+        return <FullPageLoading />;
     }
 
     return (
