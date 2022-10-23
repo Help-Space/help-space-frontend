@@ -170,7 +170,7 @@ export default function PostCard({
                 >
                     {title}
                 </span>
-                {authorId !== userId && isLoggedIn ? (
+                {authorId !== userId ? (
                     <div>
                         <LikeButton postId={postId} liked={liked} />
                     </div>
