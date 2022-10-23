@@ -6,10 +6,9 @@ import { Router, useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { fetchApi } from "shared/api/fetchApi";
 import { GetUserResponse } from "user/types/api";
-import PostsWithPagination from "post/layout/WithPagination";
+import PostsWithPagination from "post/layout/WithPaginationForProfile";
 import { postApi } from "post/api";
 import FullPageLoading from "../../shared/ui/FullPageLoading";
-import {useUser} from "../../user/store/useUser";
 
 function UserBaner() {
     const router = useRouter();
@@ -40,15 +39,15 @@ function UserBaner() {
 
     return (
         <div className="relative">
-            <div className="bg-gradient-to-r from-[#FF6969] to-[#FF4747] relative overflow-hidden px-[12%] py-[120px] lg:py-[80px] sm:py-[65px] xs:py-[50px]">
+            <div className="bg-gradient-to-r from-[#FF6969] to-[#FF4747] relative overflow-hidden py-[120px] lg:py-[80px] sm:py-[65px] xs:py-[50px]">
                 <img
                     src="/lines3.svg"
                     alt="lines"
                     className="right-0 -bottom-5 absolute md:scale-50 md:opacity-30 md:-bottom-[4rem] md:-right-[3rem]"
                 />
             </div>
-            <div className="absolute -bottom-20 px-[10%] lg:-bottom-10 sm:px-[5%] xs:-bottom-5 xs:px-[2%]">
-                <div className="max-w-[2320px] mx-auto flex gap-20 lg:gap-10 sm:gap-3">
+            <div className="mx-auto max-w-[2320px] absolute -bottom-20 px-[10%] lg:-bottom-10  md:px-[5rem] sm:px-[5%] xs:-bottom-5 xs:px-[8%]">
+                <div className="flex gap-20 lg:gap-10 sm:gap-3">
                     <div className="grid place-items-center w-[250px] h-[250px] bg-[#FF8787] rounded-full border-white border-4 lg:w-[150px] lg:h-[150px] xs:w-[100px] xs:h-[100px] ">
                         <span className="text-white font-600 text-[60px] lg:text-[40px] sm:text-[30px]">
                             {formatUser(user?.first_name, user?.last_name)}
@@ -71,36 +70,8 @@ function UserBaner() {
     );
 }
 
-function ProfileDescriptionText() {
-    return (
-        <div className="text-mediumDark">
-            <div className="flex flex-col gap-[2rem] sm:gap-[1.5rem]">
-                {/*<span className="font-[700] text-[32px] sm:text-[28px]">Ogłoszenia</span>*/}
-                {/* <Link href="/post/create">
-                    <div>
-                        <Button className="w-full  hidden md:block bg-primaryPink text-white hover:bg-secondaryPink hover:text-primaryPink active:bg-[#ffb8b8] active:text-white focus:bg-primaryPink focus:text-white">
-                            <Link href="/post/create">
-                                Dodaj ogłoszenie
-                            </Link>
-                        </Button>
-                    </div>
-                </Link> */}
-                {/*<NextLink href="/post/create" passHref>*/}
-                {/*    <Button*/}
-                {/*        as="a"*/}
-                {/*        className="w-full hidden md:block bg-primaryPink text-white hover:bg-secondaryPink hover:text-primaryPink active:bg-[#ffb8b8] active:text-white focus:bg-primaryPink focus:text-white"*/}
-                {/*    >*/}
-                {/*        Dodaj ogłoszenie*/}
-                {/*    </Button>*/}
-                {/*</NextLink>*/}
-            </div>
-        </div>
-    );
-}
-
 const Profile: NextPage = () => {
     const router = useRouter();
-    const {id} = useUser();
     return (
         <>
             <Head>
@@ -109,17 +80,16 @@ const Profile: NextPage = () => {
             </Head>
             <main>
                 <UserBaner />
-                <div className="max-w-[2320px] mx-auto">
-                    <ProfileDescriptionText />
+
+                <div className="pt-[5rem] md:pt-[2rem]">
+                    {router.isReady && (
+                        <PostsWithPagination
+                            getPosts={(page: number) =>
+                                postApi.getByAuthor(router.query.user as string, page)
+                            }
+                        />
+                    )}
                 </div>
-                {router.isReady && (
-                    <PostsWithPagination
-                        getPosts={(page: number) =>
-                            postApi.getByAuthor(router.query.user as string, page)
-                        }
-                        withClosed={router.query.user == id}
-                    />
-                )}
             </main>
         </>
     );

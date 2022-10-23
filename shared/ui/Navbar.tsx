@@ -33,12 +33,16 @@ function DropdownPanel() {
                         </Dropdown.Trigger>
                         <Dropdown.Menu color="secondary" aria-label="Avatar Actions">
                             <Dropdown.Item key="user" css={{ height: "$18" }}>
-                                <Text b color="inherit" css={{ d: "flex" }}>
-                                    Zalogowany jako
-                                </Text>
-                                <Text b color="inherit" css={{ d: "flex" }}>
-                                    {email}
-                                </Text>
+                                <Link href="/profile">
+                                    <div>
+                                        <Text b color="inherit" css={{ d: "flex" }}>
+                                            Zalogowany jako
+                                        </Text>
+                                        <Text b color="inherit" css={{ d: "flex" }}>
+                                            {email}
+                                        </Text>
+                                    </div>
+                                </Link>
                             </Dropdown.Item>
                             <Dropdown.Item key="profile" withDivider>
                                 <Link href="/profile">Twój profil</Link>
