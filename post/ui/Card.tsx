@@ -87,8 +87,25 @@ function EditPost() {
     );
 }
 
-function DropdownMenu({ id, title, content, isOpen }: { id: string, title: string, content: string, isOpen: boolean }) {
+function DropdownMenu({
+    id,
+    title,
+    content,
+    isOpen,
+    refreshPosts,
+}: {
+    id: string;
+    title: string;
+    content: string;
+    isOpen: boolean;
+    refreshPosts: () => void;
+}) {
     const disabledKeys = !isOpen ? ["close", "refresh", "edit"] : [];
+    const onClick = async (updateFunc: () => Promise<string>) => {
+        await updateFunc();
+        refreshPosts();
+    };
+
     return (
         <Dropdown>
             <Dropdown.Button
@@ -98,25 +115,15 @@ function DropdownMenu({ id, title, content, isOpen }: { id: string, title: strin
             ></Dropdown.Button>
             <Dropdown.Menu disabledKeys={disabledKeys}>
                 <Dropdown.Item key="refresh">
-                     <div onClick={() => postApi.refresh(id)}>
-                    Odśwież ogłoszenie
-                     </div>
+                    <div onClick={() => onClick(() => postApi.refresh(id))}>Odśwież ogłoszenie</div>
                 </Dropdown.Item>
                 <Dropdown.Item key="close">
-                    <div onClick={() => postApi.update(id, title, content, false)}>
+                    <div onClick={() => onClick(() => postApi.update(id, title, content, false))}>
                         Zakończ ogłoszenie
                     </div>
                 </Dropdown.Item>
-                <Dropdown.Item key="edit">
-                    <EditPost />
-                    {/* <div> */}
-                    {/* Edytuj ogłoszenie */}
-                    {/* </div> */}
-                </Dropdown.Item>
                 <Dropdown.Item key="delete" withDivider color="error">
-                     <div onClick={() => postApi.remove(id)}>
-                    Usuń ogłoszenie
-                     </div>
+                    <div onClick={() => onClick(() => postApi.remove(id))}>Usuń ogłoszenie</div>
                 </Dropdown.Item>
             </Dropdown.Menu>
         </Dropdown>
@@ -139,6 +146,10 @@ function ButtonConv() {
     );
 }
 
+interface PostCardProps {
+    refreshPosts: () => void;
+}
+
 export default function PostCard({
     id: postId,
     title,
@@ -146,8 +157,9 @@ export default function PostCard({
     content,
     liked,
     lastRefresh,
-    isOpen
-}: Post) {
+    isOpen,
+    refreshPosts,
+}: Post & PostCardProps) {
     const router = useRouter();
 
     const { id: userId, isLoggedIn } = useUser();
@@ -156,7 +168,9 @@ export default function PostCard({
     const contentWords = useMemo(() => content.split(" "), [content]);
 
     return (
-        <Card css={{ border: "none", width: "100%", paddingBlock: "1rem", opacity: isOpen ? 1 : 0.6 }}>
+        <Card
+            css={{ border: "none", width: "100%", paddingBlock: "1rem", opacity: isOpen ? 1 : 0.6 }}
+        >
             <div
                 className="flex items-center w-full"
                 style={{
@@ -177,7 +191,13 @@ export default function PostCard({
                         <LikeButton postId={postId} liked={liked} />
                     </div>
                 ) : (
-                    <DropdownMenu id={postId} title={title} content={content} isOpen={isOpen} />
+                    <DropdownMenu
+                        id={postId}
+                        title={title}
+                        content={content}
+                        isOpen={isOpen}
+                        refreshPosts={refreshPosts}
+                    />
                 )}
             </div>
             <div>

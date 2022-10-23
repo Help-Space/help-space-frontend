@@ -19,30 +19,26 @@ export default function PostsWithPagination({ getPosts }: PostsWithPaginationPro
     const [page, setPage] = useState(1);
     const [totalPages, setTotalPages] = useState(0);
     const [filterBy, setFilterBy] = useState<"opened" | "ended">("opened");
-    const router = useRouter();
+
+    const refreshPosts = async () => {
+        setIsLoading(true);
+        let newPosts;
+        try {
+            newPosts = await getPosts(page, filterBy);
+        } catch (err) {
+            setError((err as Error).message);
+            return;
+        } finally {
+            setIsLoading(false);
+        }
+        setPosts(newPosts.posts);
+        setTotalPages(newPosts.pages);
+    };
 
     useEffect(() => {
-        setIsLoading(true);
-        if (!router.isReady) return;
-        (async () => {
-            let newPosts;
-            try {
-                newPosts = await getPosts(page, filterBy);
-            } catch (err) {
-                setError((err as Error).message);
-                return;
-            } finally {
-                setIsLoading(false);
-            }
-            if (router.query.user == userId) {
-                setPosts(newPosts.posts);
-            } else {
-                setPosts(newPosts.posts.filter((post) => post.isOpen));
-            }
-            setTotalPages(newPosts.pages);
-        })();
+        refreshPosts();
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [filterBy, page, router.isReady]);
+    }, [filterBy, page]);
 
     if (error) {
         return (
@@ -98,7 +94,7 @@ export default function PostsWithPagination({ getPosts }: PostsWithPaginationPro
                 </div>
                 <div className="w-2/3 md:w-full">
                     <Container css={{ display: "flex", justifyContent: "center", gap: "$10" }}>
-                        <PostList posts={posts} />
+                        <PostList posts={posts} refreshPosts={refreshPosts} />
                         {posts.length > 0 && (
                             <Pagination
                                 page={page}
