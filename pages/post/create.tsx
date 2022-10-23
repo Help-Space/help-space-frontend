@@ -1,6 +1,6 @@
 import type { NextPage } from "next";
 import Head from "next/head";
-import CreatePostForm from "./CreatePostForm";
+import CreatePostForm from "../../post/ui/CreatePostForm";
 
 function DescriptionCreatePost() {
     return (
