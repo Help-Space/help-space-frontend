@@ -42,7 +42,7 @@ function ButtonConv() {
     return (
         <>
             <Spacer y={1} />
-            <div style={{ paddingInline: "1.5rem", paddingBottom: '1rem' }} >
+            <div style={{ paddingInline: "1.5rem", paddingBottom: "1rem" }}>
                 <Button
                     css={{ fontSize: "$lg" }}
                     className="md:w-full bg-primaryPink text-white hover:bg-secondaryPink hover:text-primaryPink active:bg-[#ffb8b8] active:text-white focus:bg-primaryPink focus:text-white"
@@ -51,7 +51,7 @@ function ButtonConv() {
                 </Button>
             </div>
         </>
-    )
+    );
 }
 
 export default function PostCard({
@@ -127,27 +127,32 @@ export default function PostCard({
                     <div className="flex flex-col">
                         <span>{firstName + " " + lastName}</span>
                         <span style={{ fontSize: "12px" }}>
-                            {new Date(lastRefresh).toLocaleDateString()}
+                            {new Date(lastRefresh).toLocaleString()}
                         </span>
                     </div>
                 </div>
                 <Spacer y={1} />
-                <span style={{ display: 'flex', flexWrap: 'wrap', paddingInline: '1.5rem', wordBreak: 'break-word' }} >
+                <span
+                    style={{
+                        display: "flex",
+                        flexWrap: "wrap",
+                        paddingInline: "1.5rem",
+                        wordBreak: "break-word",
+                    }}
+                >
                     {showMore ? content : contentWords.slice(0, 100).join(" ")}
                 </span>
                 <Spacer y={1} />
                 {contentWords.length > 100 && !showMore && (
                     <span
                         className="text-mediumDark font-bold underline-offset-1"
-                        style={{ paddingInline: '1.5rem'}}
+                        style={{ paddingInline: "1.5rem" }}
                         onClick={() => setShowMore(true)}
                     >
                         Pokaż więcej...
                     </span>
                 )}
-                {authorId !== userId && isLoggedIn && (
-                    <ButtonConv />
-                )}
+                {authorId !== userId && isLoggedIn && <ButtonConv />}
             </div>
         </Card>
     );
