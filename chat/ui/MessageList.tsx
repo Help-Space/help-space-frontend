@@ -4,10 +4,10 @@ import { Message } from "../types";
 
 export default function MessageList({ messages }: { messages: Message[] }) {
     return (
-        <Container>
+        <div className="flex flex-col gap-4">
             {messages.map((message) => (
                 <MessageContainter key={message._id} {...message} />
             ))}
-        </Container>
+        </div>
     );
 }
